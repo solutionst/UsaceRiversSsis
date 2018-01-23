@@ -5,14 +5,14 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-KC83MAS"
   DTS:CreatorName="DESKTOP-KC83MAS\bharper"
-  DTS:DTSID="{87B4CE15-72D3-45A4-861A-BC14E8E61340}"
+  DTS:DTSID="{ECCEB109-F195-4268-BD65-4420568446E2}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3002.68"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Package"
+  DTS:ObjectName="InputLockQueue"
   DTS:PackageType="5"
-  DTS:VersionBuild="42"
-  DTS:VersionGUID="{72FFE198-6E6B-4D38-995E-4818561AA91F}">
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{B081EE92-9AAC-4B89-AB9F-3AE489C77E0B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
