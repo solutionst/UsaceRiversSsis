@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "UsaceRiversSsis", "UsaceRiversSsis\UsaceRiversSsis.dtproj", "{1C7499D4-98BC-4E19-8AEA-D4A54EFCE835}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C7499D4-98BC-4E19-8AEA-D4A54EFCE835}.Development|Default.ActiveCfg = Development
+		{1C7499D4-98BC-4E19-8AEA-D4A54EFCE835}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D58521D6-AF1D-4459-BDC1-F8FD49CBEDAE}
+	EndGlobalSection
+EndGlobal
