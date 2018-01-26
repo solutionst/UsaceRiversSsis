@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="InputLockQueue"
   DTS:PackageType="5"
-  DTS:VersionBuild="43"
-  DTS:VersionGUID="{B081EE92-9AAC-4B89-AB9F-3AE489C77E0B}">
+  DTS:VersionBuild="50"
+  DTS:VersionGUID="{5B14D9D7-1522-420B-9101-60A08813C7BC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -49,7 +49,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="District"
-              DTS:DTSID="{1B1AF9AF-D5A8-4B9E-AB01-DD91ADDF0204}"
+              DTS:DTSID="{8285302A-3ACF-46EF-A8E8-E0BF868197E7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -58,7 +58,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="River"
-              DTS:DTSID="{B27B290B-C0E0-4DFB-90B1-850CEEC82145}"
+              DTS:DTSID="{1D1F9368-B3A7-4844-BC3F-E2B0A4E9A3D5}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -67,7 +67,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Lock Number"
-              DTS:DTSID="{E9500E80-4AD5-427F-B646-61D92EC59294}"
+              DTS:DTSID="{E07A6818-48BF-4910-9BE1-FD2181F188B3}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -76,7 +76,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Lock Name"
-              DTS:DTSID="{C0624CCA-8B4B-4D49-9D29-A81AF47B9327}"
+              DTS:DTSID="{28AF570E-0550-4FD6-B20B-768CB5408862}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -85,7 +85,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Chamber Number"
-              DTS:DTSID="{589EF139-227F-4D5E-9551-9764C4AF8BD3}"
+              DTS:DTSID="{8FDF0D53-8D46-41DD-ACA0-0835EB6503C2}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -94,7 +94,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Vessel Number"
-              DTS:DTSID="{20C4EB04-0720-4723-AA93-44FAE870CD24}"
+              DTS:DTSID="{ECF84860-04BD-4651-A13D-312FB75484A4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -103,7 +103,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Vessel Name"
-              DTS:DTSID="{5B1BA71A-78D4-46BB-B242-A6F99AAD29E6}"
+              DTS:DTSID="{4E5486E2-2871-4C1B-8E28-3C9F3F75D37B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -112,7 +112,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Direction"
-              DTS:DTSID="{ACAEE6EA-5999-4D8D-BFFD-F56E23175491}"
+              DTS:DTSID="{4C9A1158-24AC-4CFC-BE6E-B05CE98FE4FE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -121,7 +121,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Arrival"
-              DTS:DTSID="{AF363032-4A26-4958-A791-8C7D7A45F97E}"
+              DTS:DTSID="{10947A52-52FC-4A0E-8F6A-7AE960EB9542}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -130,7 +130,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Start of Lockage"
-              DTS:DTSID="{EC55B17A-3985-4D75-AABD-B1A84B90617B}"
+              DTS:DTSID="{2B057B72-7A5B-4BE4-B99E-2132B432B969}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -139,7 +139,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="End of Lockage"
-              DTS:DTSID="{8CF7FC1D-1D4B-4E4A-AF76-D723C5A758BB}"
+              DTS:DTSID="{F42F2E54-B336-468A-9242-5F75C93DB006}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -148,7 +148,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Delay (Minutes)"
-              DTS:DTSID="{81464F2E-DEC6-46E5-9B69-DB326718F9B9}"
+              DTS:DTSID="{9EF42DA7-9BF6-4678-A27A-F79CD3A1B267}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -157,7 +157,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Processing (Minutes)"
-              DTS:DTSID="{A7D39420-7A9F-4459-90A4-54C44A6B25A7}"
+              DTS:DTSID="{243B015B-A717-4C96-8272-B2AC16B408A1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -166,7 +166,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Empty Barges"
-              DTS:DTSID="{D1F6A6E8-BBB8-4D1A-B8F4-5EF2C662BC25}"
+              DTS:DTSID="{4D62188B-06F4-4FB9-AF01-D152F4C254C5}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -175,7 +175,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Loaded Barges"
-              DTS:DTSID="{35A07839-114A-444D-8A1B-8DEF48757827}"
+              DTS:DTSID="{0F256093-1B88-47C5-9DE6-7568D2DAA07C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -183,7 +183,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="ErrorCode"
-              DTS:DTSID="{6F70099E-305F-4120-B5F9-C605494DE9E6}"
+              DTS:DTSID="{D4B5DF9D-4F43-4A37-BF1D-D161D5A8F2CE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -191,7 +191,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="ErrorColumn"
-              DTS:DTSID="{DF396287-0832-40CE-84BA-DFAE9AA25DC2}"
+              DTS:DTSID="{CEAA4DDA-DD87-43AD-9704-E31DB9E54BD2}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -200,7 +200,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ErrorDescription"
-              DTS:DTSID="{5AD7C5FB-4C66-468A-A75D-28B14C5B5790}"
+              DTS:DTSID="{68CD8297-8642-47E7-A51A-09033DBC865F}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -230,7 +230,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="District"
-              DTS:DTSID="{6800A844-FC53-472B-8A63-2A58060D86A4}"
+              DTS:DTSID="{F7409623-9580-4251-95C3-01553679BE60}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -239,7 +239,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="River"
-              DTS:DTSID="{BD7449BD-C4BA-4EFC-963A-AFAEDC152E2A}"
+              DTS:DTSID="{82990918-4EF9-432A-86BB-42062A683D78}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -248,7 +248,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Lock Number"
-              DTS:DTSID="{4880A4B3-4F01-4DEB-B923-454B000C8472}"
+              DTS:DTSID="{76B5D938-5F4B-4FDF-859A-49B80B785D77}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -257,7 +257,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Lock Name"
-              DTS:DTSID="{DBA36386-1D61-4DC0-A1EA-D76E1819ED98}"
+              DTS:DTSID="{14C131E4-49A2-4261-A607-E7C34B9D85BE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -266,7 +266,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Chamber Number"
-              DTS:DTSID="{3B05E42E-7DC2-42E5-95BF-D4C0AC36B43C}"
+              DTS:DTSID="{0D7A70D2-582A-4304-A280-7CCF65B71E93}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -275,7 +275,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Vessel Number"
-              DTS:DTSID="{16A39226-8BBB-449C-93FF-938FD5896A62}"
+              DTS:DTSID="{A95B9560-29B7-4718-9CC5-2B8B2139549D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -284,7 +284,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Vessel Name"
-              DTS:DTSID="{C6F0C26F-0CC7-4DC2-8B9D-1B4A523F40ED}"
+              DTS:DTSID="{8A1F5E48-4155-4CE2-9DD7-BE26638CEEF3}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -293,7 +293,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Direction"
-              DTS:DTSID="{F4E94839-55BF-46DD-8305-4541D8B73B99}"
+              DTS:DTSID="{DAD12F7C-D145-4B9C-866E-8BBB9B92C358}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -302,7 +302,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Arrival"
-              DTS:DTSID="{FAD65F70-84FB-4FCC-BABC-5E80D4A539EA}"
+              DTS:DTSID="{F449DEE8-9D09-402E-AEE2-7F21806F5380}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -311,7 +311,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Start of Lockage"
-              DTS:DTSID="{01DD0B2D-68EA-420C-96E0-70040E557962}"
+              DTS:DTSID="{0BD30821-AA55-4BAB-8B72-E6EF38A42CF0}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -320,7 +320,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="End of Lockage"
-              DTS:DTSID="{88E532C1-10BE-4B3C-8E0C-8E4D3D9465EC}"
+              DTS:DTSID="{3EF985F1-BFDC-4CE4-B6E2-270FE1E49BB6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -329,7 +329,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Delay (Minutes)"
-              DTS:DTSID="{B8186CF4-6707-4C74-BAC0-3BB5038FBB67}"
+              DTS:DTSID="{DCC88EE4-6498-410D-BADD-B8E1A5DCFE70}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -338,7 +338,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Processing (Minutes)"
-              DTS:DTSID="{956463EF-6523-46CE-AB34-15D9C090C212}"
+              DTS:DTSID="{3C2C6C94-B423-428C-BF26-A9EE6C47DBB7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -347,7 +347,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Empty Barges"
-              DTS:DTSID="{B2D05FBC-7D27-4532-81EA-4DF646338ABD}"
+              DTS:DTSID="{6111D5FF-AAD2-430B-9605-91A46C1C434E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -356,7 +356,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Loaded Barges"
-              DTS:DTSID="{7DF7029B-E870-4873-AB52-CAFBAAA441F0}"
+              DTS:DTSID="{2B0A8C29-05D3-4869-9907-E515EAC5B856}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -2120,7 +2120,7 @@ namespace SC_beb488d5367545daba838fdb06a12168.Properties {
 		<msb:CodeName>SC_beb488d5367545daba838fdb06a12168</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>SC_beb488d5367545daba838fdb06a12168</msb:DisplayName>
-		<msb:ProjectId>{F72D19B0-E902-4C89-A6A2-C7EFEB5B7992}</msb:ProjectId>
+		<msb:ProjectId>{334866F6-7997-4A1B-BE76-6864D8FFF6E7}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="SC_beb488d5367545daba838fdb06a12168.csproj"/>
@@ -2267,7 +2267,7 @@ namespace SC_beb488d5367545daba838fdb06a12168.Properties {
                     <arrayElement
                       dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDALSjZloAAAAAAAAAAOAAIiALATAAABQAAAAIAAAAAAAArjMA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAMuza1oAAAAAAAAAAOAAIiALATAAABQAAAAIAAAAAAAArjMA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAFwzAABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAkMgAAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2344,7 +2344,7 @@ bgBuAG8AdAAgAGIAZQAgAHMAZQB0ACAAdABvACAARgBhAGwAcwBlAC4AIABBAHMAcwBpAGcAbgAg
 AGEAIAB2AGEAbAB1AGUAIAB0AG8AIAB0AGgAZQAgAGMAbwBsAHUAbQBuACAAaQBuAHMAdABlAGEA
 ZAAuAAAPSQBuAHAAdQB0ACAAMAAAcVMAQwBfAGIAZQBiADQAOAA4AGQANQAzADYANwA1ADQANQBk
 AGEAYgBhADgAMwA4AGYAZABiADAANgBhADEAMgAxADYAOAAuAFAAcgBvAHAAZQByAHQAaQBlAHMA
-LgBSAGUAcwBvAHUAcgBjAGUAcwAAGMh7A59u70if74kqdEV+uwAEIAEBCAMgAAEFIAEBEREEIAEB
+LgBSAGUAcwBvAHUAcgBjAGUAcwAAzVmH25/l4ka2TwZhNoaVGAAEIAEBCAMgAAEFIAEBEREEIAEB
 DgUgAQERWQQgABJpBCABDggJIAMBEj0dCBJBAwYSPQMGHQgEIAEICAQgAQIIBSACAQgcAyAAAgYg
 AgIOEXUFIAEdCAgGAAESeRF9BSAAEoCBByACAQ4SgIEIt3pcVhk04IkIiYRdzYCAzJEDBhIUAwYS
 GAMGEkUDBhJRAwYSVQMGEiAFIAEBEgwDIAAIBCABAQIJIAQBCA4SPRJBBSABARJFBAAAElEEAAAS
@@ -2357,7 +2357,7 @@ YWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNL
 ZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNvdXJjZXMuUnVudGltZVJlc291cmNl
 U2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAAAAAAAAAAAAAAAAAAACAAAAHAEAAEAyAABAFAAAUlNE
 UwAAAAAAAAAAAAAAAAAAAAABAAAAQzpcVXNlcnNcYmhhcnBlclxBcHBEYXRhXExvY2FsXFRlbXBc
-dnN0YVw1ZGQ4OGM2MDhkZmY0OWY5OTZkY2UxMjlkMWI0MWRkOVxvYmpcUmVsZWFzZVxTQ19iZWI0
+dnN0YVwyOTY4NDI1MWIwNWY0YmY4OTIwNjYwYWUyZTJlMjlmNlxvYmpcUmVsZWFzZVxTQ19iZWI0
 ODhkNTM2NzU0NWRhYmE4MzhmZGIwNmExMjE2OC5wZGIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEMwAA
@@ -2488,7 +2488,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[InputLocksQueue]</property>
+                  name="OpenRowset">[dbo].[InputLockQueue]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -2817,7 +2817,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{D64E1E95-C39A-4EA1-B044-2DCAA46DEA2C}"
-          SQLTask:SqlStatementSource="truncate table InputLocksQueue" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="truncate table InputLockQueue" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -2850,16 +2850,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
         <NodeLayout
           Size="189,44"
           Id="Package\TruncateRawTable"
-          TopLeft="19.75,20" />
+          TopLeft="19.25,20" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="114.25,64">
+          TopLeft="113.75,64">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="145.75,51.5"
+              EndConnector="146.25,51.5"
               Start="0,0"
-              End="145.75,44">
+              End="146.25,44">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2870,13 +2870,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                     Point2="0,25.75"
                     Point3="4,25.75" />
                   <mssgle:LineSegment
-                    End="141.75,25.75" />
+                    End="142.25,25.75" />
                   <mssgle:CubicBezierSegment
-                    Point1="141.75,25.75"
-                    Point2="145.75,25.75"
-                    Point3="145.75,29.75" />
+                    Point1="142.25,25.75"
+                    Point2="146.25,25.75"
+                    Point3="146.25,29.75" />
                   <mssgle:LineSegment
-                    End="145.75,44" />
+                    End="146.25,44" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2894,14 +2894,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="173.5,42"
-          Id="Package\ReadFlatFile\UsaceRiversDWDest"
-          TopLeft="73.464285714286,188.428571428571" />
-        <NodeLayout
-          Size="172,42"
-          Id="Package\ReadFlatFile\FailedRows"
-          TopLeft="339,291.5" />
-        <NodeLayout
           Size="151,42"
           Id="Package\ReadFlatFile\Flat File Source"
           TopLeft="80.6428571428571,25.6428571428571" />
@@ -2909,6 +2901,62 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           Size="163,42"
           Id="Package\ReadFlatFile\Get Error Info"
           TopLeft="341,190" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\ReadFlatFile\Fix Column Values"
+          TopLeft="81,99" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\ReadFlatFile\FailedRows"
+          TopLeft="339,291.5" />
+        <NodeLayout
+          Size="173.5,42"
+          Id="Package\ReadFlatFile\UsaceRiversDWDest"
+          TopLeft="73.464285714286,188.428571428571" />
+        <EdgeLayout
+          Id="Package\ReadFlatFile.Paths[Flat File Source Output]"
+          TopLeft="159.821428571429,67.6428571428571">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.3571428571429"
+              Start="0,0"
+              End="0,23.8571428571429">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.8571428571429" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ReadFlatFile.Paths[Derived Column Output]"
+          TopLeft="161.857142857143,141">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.428571428571"
+              Start="0,0"
+              End="0,39.928571428571">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.928571428571" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\ReadFlatFile.Paths[Output 0]"
           TopLeft="423.75,232">
@@ -2951,59 +2999,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-49.826400669643,5,186.188515625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="165,42"
-          Id="Package\ReadFlatFile\Fix Column Values"
-          TopLeft="81,99" />
-        <EdgeLayout
-          Id="Package\ReadFlatFile.Paths[Flat File Source Output]"
-          TopLeft="159.821428571429,67.6428571428571">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,31.3571428571429"
-              Start="0,0"
-              End="0,23.8571428571429">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.8571428571429" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-30.64056640625,6.30698939732145,61.2811328125,11.2431640625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ReadFlatFile.Paths[Derived Column Output]"
-          TopLeft="161.857142857143,141">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,47.428571428571"
-              Start="0,0"
-              End="0,39.928571428571">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.928571428571" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-30.64056640625,14.3427036830355,61.2811328125,11.2431640625"
+              BoundingBox="-29.941049107143,5,146.4178125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
