@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="InputLockQueue"
   DTS:PackageType="5"
-  DTS:VersionBuild="50"
-  DTS:VersionGUID="{5B14D9D7-1522-420B-9101-60A08813C7BC}">
+  DTS:VersionBuild="52"
+  DTS:VersionGUID="{698843BF-0875-4618-8173-2B6526DAE333}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -2691,11 +2691,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       name="River" />
                     <externalMetadataColumn
                       refId="Package\ReadFlatFile\UsaceRiversDWDest.Inputs[OLE DB Destination Input].ExternalColumns[LockNumber]"
-                      dataType="i4"
+                      dataType="ui1"
                       name="LockNumber" />
                     <externalMetadataColumn
                       refId="Package\ReadFlatFile\UsaceRiversDWDest.Inputs[OLE DB Destination Input].ExternalColumns[ChamberNumber]"
-                      dataType="i4"
+                      dataType="ui1"
                       name="ChamberNumber" />
                     <externalMetadataColumn
                       refId="Package\ReadFlatFile\UsaceRiversDWDest.Inputs[OLE DB Destination Input].ExternalColumns[VesselNumber]"
@@ -2850,33 +2850,33 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
         <NodeLayout
           Size="189,44"
           Id="Package\TruncateRawTable"
-          TopLeft="19.25,20" />
+          TopLeft="19.75,19.75" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="113.75,64">
+          TopLeft="114.25,63.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="146.25,51.5"
+              EndConnector="145.75,51.75"
               Start="0,0"
-              End="146.25,44">
+              End="145.75,44.25">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.75" />
+                    End="0,21.875" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,21.75"
-                    Point2="0,25.75"
-                    Point3="4,25.75" />
+                    Point1="0,21.875"
+                    Point2="0,25.875"
+                    Point3="4,25.875" />
                   <mssgle:LineSegment
-                    End="142.25,25.75" />
+                    End="141.75,25.875" />
                   <mssgle:CubicBezierSegment
-                    Point1="142.25,25.75"
-                    Point2="146.25,25.75"
-                    Point3="146.25,29.75" />
+                    Point1="141.75,25.875"
+                    Point2="145.75,25.875"
+                    Point3="145.75,29.875" />
                   <mssgle:LineSegment
-                    End="146.25,44" />
+                    End="145.75,44.25" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2906,57 +2906,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           Id="Package\ReadFlatFile\Fix Column Values"
           TopLeft="81,99" />
         <NodeLayout
-          Size="172,42"
-          Id="Package\ReadFlatFile\FailedRows"
-          TopLeft="339,291.5" />
-        <NodeLayout
           Size="173.5,42"
           Id="Package\ReadFlatFile\UsaceRiversDWDest"
           TopLeft="73.464285714286,188.428571428571" />
-        <EdgeLayout
-          Id="Package\ReadFlatFile.Paths[Flat File Source Output]"
-          TopLeft="159.821428571429,67.6428571428571">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,31.3571428571429"
-              Start="0,0"
-              End="0,23.8571428571429">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.8571428571429" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ReadFlatFile.Paths[Derived Column Output]"
-          TopLeft="161.857142857143,141">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,47.428571428571"
-              Start="0,0"
-              End="0,39.928571428571">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.928571428571" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\ReadFlatFile\FailedRows"
+          TopLeft="339,291.5" />
         <EdgeLayout
           Id="Package\ReadFlatFile.Paths[Output 0]"
           TopLeft="423.75,232">
@@ -3001,6 +2957,50 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             <mssgm:EdgeLabel
               BoundingBox="-29.941049107143,5,146.4178125,11.43359375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ReadFlatFile.Paths[Flat File Source Output]"
+          TopLeft="159.821428571429,67.6428571428571">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.3571428571429"
+              Start="0,0"
+              End="0,23.8571428571429">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.8571428571429" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ReadFlatFile.Paths[Derived Column Output]"
+          TopLeft="161.857142857143,141">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.428571428571"
+              Start="0,0"
+              End="0,39.928571428571">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.928571428571" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
