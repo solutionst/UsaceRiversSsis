@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="LoadDataWarehouseTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{0AED0456-B7CA-40F4-8F7B-5D1355848857}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{3A792FA0-B715-4FAF-A60C-2A6CA7D0001E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -620,6 +620,188 @@
               </outputs>
             </component>
             <component
+              refId="Package\Load DW Tables\Insert Lock Chamber"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Insert Lock Chamber"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">INSERT INTO [dbo].[DimLockChamber]
+           ([District]
+           ,[River]
+           ,[LockNumber]
+           ,[LockName]
+           ,[ChamberNumber])
+     VALUES
+           (?,?,?,?,?)</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load DW Tables\Insert Lock Chamber.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].Columns[District]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="District"
+                      externalMetadataColumnId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[District]" />
+                    <inputColumn
+                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].Columns[River]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="River"
+                      externalMetadataColumnId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[River]" />
+                    <inputColumn
+                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].Columns[LockNumber]"
+                      cachedDataType="ui1"
+                      cachedName="LockNumber"
+                      externalMetadataColumnId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LockNumber]" />
+                    <inputColumn
+                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].Columns[LockName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LockName"
+                      externalMetadataColumnId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LockName]" />
+                    <inputColumn
+                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].Columns[ChamberNumber]"
+                      cachedDataType="ui1"
+                      cachedName="ChamberNumber"
+                      externalMetadataColumnId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[ChamberNumber]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="ui1"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="ui1"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load DW Tables\Insert Lock Chamber.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load DW Tables\Insert Lock Chamber.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load DW Tables\Insert Lock Chamber.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Insert Lock Chamber.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Insert Lock Chamber.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Insert Lock Chamber.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Load DW Tables\Lookup LockChamber"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
@@ -839,6 +1021,11 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
               name="Derived Column Output"
               startId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output]" />
             <path
+              refId="Package\Load DW Tables.Paths[Lookup No Match Output]"
+              endId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input]"
+              name="Lookup No Match Output"
+              startId="Package\Load DW Tables\Lookup LockChamber.Outputs[Lookup No Match Output]" />
+            <path
               refId="Package\Load DW Tables.Paths[OLE DB Source Output]"
               endId="Package\Load DW Tables\Add Columns.Inputs[Derived Column Input]"
               name="OLE DB Source Output"
@@ -871,7 +1058,7 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
     design-time-name="Package\Load DW Tables">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="160,42"
           Id="Package\Load DW Tables\InputLockQueue"
@@ -926,6 +1113,46 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="165.5,42"
+          Id="Package\Load DW Tables\Insert Lock Chamber"
+          TopLeft="330.416666666667,261.666666666667" />
+        <EdgeLayout
+          Id="Package\Load DW Tables.Paths[Lookup No Match Output]"
+          TopLeft="149.714285714286,225.464285714286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="263.452380952381,36.2023809523809"
+              Start="0,0"
+              End="263.452380952381,28.7023809523809">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.1011904761905" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.1011904761905"
+                    Point2="0,18.1011904761905"
+                    Point3="4,18.1011904761905" />
+                  <mssgle:LineSegment
+                    End="259.452380952381,18.1011904761905" />
+                  <mssgle:CubicBezierSegment
+                    Point1="259.452380952381,18.1011904761905"
+                    Point2="263.452380952381,18.1011904761905"
+                    Point3="263.452380952381,22.1011904761905" />
+                  <mssgle:LineSegment
+                    End="263.452380952381,28.7023809523809" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="75.9198037574405,23.1011904761905,111.6127734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
