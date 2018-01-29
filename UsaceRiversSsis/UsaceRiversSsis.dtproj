@@ -26,12 +26,12 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-KC83MAS</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAxhysjtUu6kuJwqDeuhCWigAAAAACAAAAAAAQZgAAAAEAACAAAABDHmfdjLtf4ZVrVZRW3H1IR1F3jL73Z3a0OzNcRGnZZQAAAAAOgAAAAAIAACAAAAC6cUTqjsXk477x+xQBFtbqDetnWPSRY3mjEb2wQAdfWZAAAACmBDwzJnBKzFFS/TGngTsNRSy0PT9eXTEfW4tIXe4oC/ObYUciCM4994Yo+mrWOjxGxxGxCei12Voyz4kN9MAi7pEHsoPJlNXBdhrUVtHdD16f/KC4G6umITt5/omvAGTETIoIDD8XcrSxXKc19ebFbgOKtHb3S3IdFpNzMbJ+r0vi5x57JFqIBourEeTBQ45AAAAAhyFK/fpUc/os2Xryxq9+6qztv8tQGQlp7/f2fXvnXTc3YJG0N8kGfgc/9J+QgoOUYgZUuinZS6joNhNhWVkPzA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAxhysjtUu6kuJwqDeuhCWigAAAAACAAAAAAAQZgAAAAEAACAAAAD/vIG5xRcnJQ6UGGLeIkXNUnuAg/vZVacYAyLx5fAXggAAAAAOgAAAAAIAACAAAAAPQNiw52URzBg65UlyuExQ8FUVVCFCV2/HN53X0qeSjpAAAAAOCFiy3mpS3bFaoozRtPZeyPx3hzIYUZIiTJYSzeF7G+fd6aTKv52RMCOVkm5Rcf846zcox2wFyX0JqXvozV0E66n0rZTgKRG/OHNwePpQ8+QG6KcP2mVGoa+oXnBGgTFghHeR7rhpDohPpchld4Y+B3qKFBZnBqqoK+rtz8GNZ3tRs4bGzVuQuhdLEawmbLpAAAAA4h56LWsjVFlGBMyWAKGzaeON/rOZBpkFUTgX1teqZ4XZdmrp/UMP5VpHvukhfGF6QkAybfZG7PCDN+eepfsEaA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="InputLockQueue.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="LoadDataWarehouseTables.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="LoadDwDimensions.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
@@ -503,16 +503,16 @@
                 </SSIS:Parameter>
               </SSIS:Parameters>
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="LoadDataWarehouseTables.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="LoadDwDimensions.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{8DD95D0A-FBF3-4F1B-81E0-DD29CDD696B3}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">LoadDataWarehouseTables</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{23A59408-D227-4F79-A20C-657C575C5DBA}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">LoadDwDimensions</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">44</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">29</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{24027A27-F15E-4289-ADFC-0150CADEA639}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{51F6B3D4-F8CB-46C9-9BCB-B2A90592CDBB}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
