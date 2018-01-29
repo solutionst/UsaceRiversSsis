@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="LoadDataWarehouseTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{8D2CF1F5-0D19-424E-A43E-02938DC20461}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{F883ABF2-8434-437B-A737-27BA539CEF3A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -43,6 +43,146 @@
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\Load DW Tables\Add Columns"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add Columns"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load DW Tables\Add Columns.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load DW Tables\Add Columns.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[LockChamberId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[LockChamberId]"
+                      name="LockChamberId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[HourId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[HourId]"
+                      name="HourId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[HourMatch]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="13"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[HourMatch]"
+                      name="HourMatch"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"yyyy-MM-dd hh"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"yyyy-MM-dd hh"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[VesselId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[VesselId]"
+                      name="VesselId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load DW Tables\Add Columns.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\Load DW Tables\InputLockQueue"
               componentClassID="Microsoft.OLEDBSource"
@@ -132,6 +272,144 @@
                       externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[ChamberNumber]"
                       lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[ChamberNumber]"
                       name="ChamberNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[Id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[Id]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[Id]"
+                      name="Id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[UniqueMatch]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[UniqueMatch]"
+                      length="250"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[UniqueMatch]"
+                      name="UniqueMatch"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[District]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[District]"
+                      length="50"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[District]"
+                      name="District"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LockName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[LockName]"
+                      length="50"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LockName]"
+                      name="LockName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[VesselNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[VesselNumber]"
+                      length="50"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[VesselNumber]"
+                      name="VesselNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[VesselName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[VesselName]"
+                      length="50"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[VesselName]"
+                      name="VesselName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[Direction]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[Direction]"
+                      length="50"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[Direction]"
+                      name="Direction"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[Arrival]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[Arrival]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[Arrival]"
+                      name="Arrival"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[StartOfLockage]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[StartOfLockage]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[StartOfLockage]"
+                      name="StartOfLockage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[EndOfLockage]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[EndOfLockage]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[EndOfLockage]"
+                      name="EndOfLockage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[DelayMinutes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[DelayMinutes]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[DelayMinutes]"
+                      name="DelayMinutes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[ProcessingMinutes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[ProcessingMinutes]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[ProcessingMinutes]"
+                      name="ProcessingMinutes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[EmptyBarges]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[EmptyBarges]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[EmptyBarges]"
+                      name="EmptyBarges"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LoadedBarges]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].ExternalColumns[LoadedBarges]"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LoadedBarges]"
+                      name="LoadedBarges"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -254,182 +532,88 @@
                       lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Load DW Tables\Lookup Lock Chamber"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
-              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup Lock Chamber"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement that generates the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimLockChamber]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimLockChamber]) [refTable]
-where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[ChamberNumber] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the type of connection used to access the reference dataset."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the cache type of the lookup table."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
-                  name="MaxMemoryUsage64">25</property>
-                <property
-                  dataType="System.String"
-                  description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="LockId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="District" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="River" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="LockNumber" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LockName" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ChamberNumber" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[River]};#{Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LockNumber]};#{Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[ChamberNumber]};</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
-                  name="TreatDuplicateKeysAsError">false</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Load DW Tables\Lookup Lock Chamber.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
-                  description="Connection manager used to access lookup data."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Load DW Tables\Lookup Lock Chamber.Inputs[Lookup Input]"
-                  name="Lookup Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Load DW Tables\Lookup Lock Chamber.Inputs[Lookup Input].Columns[River]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="River"
-                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[River]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">River</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Load DW Tables\Lookup Lock Chamber.Inputs[Lookup Input].Columns[LockNumber]"
-                      cachedDataType="ui1"
-                      cachedName="LockNumber"
-                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LockNumber]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">LockNumber</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Load DW Tables\Lookup Lock Chamber.Inputs[Lookup Input].Columns[ChamberNumber]"
-                      cachedDataType="ui1"
-                      cachedName="ChamberNumber"
-                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[ChamberNumber]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">ChamberNumber</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Load DW Tables\Lookup Lock Chamber.Outputs[Lookup Match Output]"
-                  errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="Lookup Match Output"
-                  synchronousInputId="Package\Load DW Tables\Lookup Lock Chamber.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Load DW Tables\Lookup Lock Chamber.Outputs[Lookup No Match Output]"
-                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
-                  exclusionGroup="1"
-                  name="Lookup No Match Output"
-                  synchronousInputId="Package\Load DW Tables\Lookup Lock Chamber.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Load DW Tables\Lookup Lock Chamber.Outputs[Lookup Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Lookup Error Output"
-                  synchronousInputId="Package\Load DW Tables\Lookup Lock Chamber.Inputs[Lookup Input]">
-                  <outputColumns>
                     <outputColumn
-                      refId="Package\Load DW Tables\Lookup Lock Chamber.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[Id]"
                       dataType="i4"
-                      lineageId="Package\Load DW Tables\Lookup Lock Chamber.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[Id]"
+                      name="Id" />
                     <outputColumn
-                      refId="Package\Load DW Tables\Lookup Lock Chamber.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[UniqueMatch]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[UniqueMatch]"
+                      name="UniqueMatch" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[District]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[District]"
+                      name="District" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[LockName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[LockName]"
+                      name="LockName" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[VesselNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[VesselNumber]"
+                      name="VesselNumber" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[VesselName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[VesselName]"
+                      name="VesselName" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[Direction]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[Direction]"
+                      name="Direction" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[Arrival]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[Arrival]"
+                      name="Arrival" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[StartOfLockage]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[StartOfLockage]"
+                      name="StartOfLockage" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[EndOfLockage]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[EndOfLockage]"
+                      name="EndOfLockage" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[DelayMinutes]"
                       dataType="i4"
-                      lineageId="Package\Load DW Tables\Lookup Lock Chamber.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[DelayMinutes]"
+                      name="DelayMinutes" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[ProcessingMinutes]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[ProcessingMinutes]"
+                      name="ProcessingMinutes" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[EmptyBarges]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[EmptyBarges]"
+                      name="EmptyBarges" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[LoadedBarges]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[LoadedBarges]"
+                      name="LoadedBarges" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -439,7 +623,7 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
           <paths>
             <path
               refId="Package\Load DW Tables.Paths[OLE DB Source Output]"
-              endId="Package\Load DW Tables\Lookup Lock Chamber.Inputs[Lookup Input]"
+              endId="Package\Load DW Tables\Add Columns.Inputs[Derived Column Input]"
               name="OLE DB Source Output"
               startId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output]" />
           </paths>
@@ -476,23 +660,23 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
           Id="Package\Load DW Tables\InputLockQueue"
           TopLeft="61.5,21.5" />
         <NodeLayout
-          Size="183.5,42"
-          Id="Package\Load DW Tables\Lookup Lock Chamber"
-          TopLeft="56.25,100" />
+          Size="141,42"
+          Id="Package\Load DW Tables\Add Columns"
+          TopLeft="63.25,102.75" />
         <EdgeLayout
           Id="Package\Load DW Tables.Paths[OLE DB Source Output]"
-          TopLeft="144.75,63.5">
+          TopLeft="137.625,63.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,36.5"
+              EndConnector="0,39.25"
               Start="0,0"
-              End="0,29">
+              End="0,31.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29" />
+                    End="0,31.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -514,29 +698,6 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load DW Tables\Lookup Lock Chamber">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimLockChamber]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
