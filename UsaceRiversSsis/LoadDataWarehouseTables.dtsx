@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="LoadDataWarehouseTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{3A792FA0-B715-4FAF-A60C-2A6CA7D0001E}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{8D6C3467-5BAD-496C-A245-39FC94ABB892}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -55,6 +55,13 @@
                   refId="Package\Load DW Tables\Add Columns.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Add Columns.Inputs[Derived Column Input].Columns[StartOfLockage]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartOfLockage"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[StartOfLockage]" />
+                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
@@ -115,7 +122,7 @@
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      length="13"
+                      length="53"
                       lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[HourMatch]"
                       name="HourMatch"
                       truncationRowDisposition="FailComponent">
@@ -124,13 +131,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">"yyyy-MM-dd hh"</property>
+                          name="Expression">(DT_WSTR,4)[DATEPART]("yyyy",#{Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[StartOfLockage]}) + "-" + (DT_WSTR,42)[DATEPART]("mm",#{Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[StartOfLockage]}) + "-" + (DT_WSTR,2)[DATEPART]("dd",#{Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[StartOfLockage]}) + " " + (DT_WSTR,2)[DATEPART]("Hh",#{Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[StartOfLockage]})</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">"yyyy-MM-dd hh"</property>
+                          name="FriendlyExpression">(DT_WSTR,4)DATEPART("yyyy",StartOfLockage) + "-" + (DT_WSTR,42)DATEPART("mm",StartOfLockage) + "-" + (DT_WSTR,2)DATEPART("dd",StartOfLockage) + " " + (DT_WSTR,2)DATEPART("Hh",StartOfLockage)</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -620,11 +627,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load DW Tables\Insert Lock Chamber"
+              refId="Package\Load DW Tables\Insert LockChamber"
               componentClassID="Microsoft.OLEDBCommand"
               contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
               description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-              name="Insert Lock Chamber"
+              name="Insert LockChamber"
               usesDispositions="true"
               version="2">
               <properties>
@@ -652,7 +659,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load DW Tables\Insert Lock Chamber.Connections[OleDbConnection]"
+                  refId="Package\Load DW Tables\Insert LockChamber.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
                   connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
                   description="The OLE DB runtime connection used to access the database."
@@ -660,53 +667,53 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input]"
+                  refId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input]"
                   errorOrTruncationOperation="Command Execution"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Command Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].Columns[District]"
+                      refId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].Columns[District]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="District"
-                      externalMetadataColumnId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      externalMetadataColumnId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[District]" />
                     <inputColumn
-                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].Columns[River]"
+                      refId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].Columns[River]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="River"
-                      externalMetadataColumnId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      externalMetadataColumnId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
                       lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[River]" />
                     <inputColumn
-                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].Columns[LockNumber]"
+                      refId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].Columns[LockNumber]"
                       cachedDataType="ui1"
                       cachedName="LockNumber"
-                      externalMetadataColumnId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      externalMetadataColumnId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
                       lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LockNumber]" />
                     <inputColumn
-                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].Columns[LockName]"
+                      refId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].Columns[LockName]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="LockName"
-                      externalMetadataColumnId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      externalMetadataColumnId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
                       lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LockName]" />
                     <inputColumn
-                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].Columns[ChamberNumber]"
+                      refId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].Columns[ChamberNumber]"
                       cachedDataType="ui1"
                       cachedName="ChamberNumber"
-                      externalMetadataColumnId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      externalMetadataColumnId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
                       lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[ChamberNumber]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      refId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -719,7 +726,7 @@
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
-                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      refId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -732,7 +739,7 @@
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
-                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      refId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
                       dataType="ui1"
                       name="Param_2">
                       <properties>
@@ -743,7 +750,7 @@
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
-                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      refId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -756,7 +763,7 @@
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
-                      refId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      refId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
                       dataType="ui1"
                       name="Param_4">
                       <properties>
@@ -771,29 +778,151 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load DW Tables\Insert Lock Chamber.Outputs[OLE DB Command Output]"
+                  refId="Package\Load DW Tables\Insert LockChamber.Outputs[OLE DB Command Output]"
                   exclusionGroup="1"
                   name="OLE DB Command Output"
-                  synchronousInputId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input]">
+                  synchronousInputId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load DW Tables\Insert Lock Chamber.Outputs[OLE DB Command Error Output]"
+                  refId="Package\Load DW Tables\Insert LockChamber.Outputs[OLE DB Command Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Command Error Output"
-                  synchronousInputId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input]">
+                  synchronousInputId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load DW Tables\Insert Lock Chamber.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      refId="Package\Load DW Tables\Insert LockChamber.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load DW Tables\Insert Lock Chamber.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load DW Tables\Insert LockChamber.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load DW Tables\Insert Lock Chamber.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load DW Tables\Insert LockChamber.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load DW Tables\Insert Lock Chamber.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load DW Tables\Insert LockChamber.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load DW Tables\Lookup DimHour"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup DimHour"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimHour]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="HourId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="HourMatch" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Year" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MonthNumberOfYear" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayOfMonth" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="HourOfDay" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FullDateAlternateKey" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayNumberOfWeek" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayNameOfWeek" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayNumberOfYear" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="WeekNumberOfYear" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MonthName" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CalendarQuarter" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TimeCreated" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load DW Tables\Lookup DimHour.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load DW Tables\Lookup DimHour.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load DW Tables\Lookup DimHour.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load DW Tables\Lookup DimHour.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load DW Tables\Lookup DimHour.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load DW Tables\Lookup DimHour.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load DW Tables\Lookup DimHour.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load DW Tables\Lookup DimHour.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load DW Tables\Lookup DimHour.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Lookup DimHour.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Lookup DimHour.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Lookup DimHour.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1013,6 +1142,743 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
                 </output>
               </outputs>
             </component>
+            <component
+              refId="Package\Load DW Tables\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[River]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="River"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[River]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[River]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[LockNumber]"
+                      cachedDataType="ui1"
+                      cachedName="LockNumber"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LockNumber]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LockNumber]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[ChamberNumber]"
+                      cachedDataType="ui1"
+                      cachedName="ChamberNumber"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[ChamberNumber]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[ChamberNumber]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[Id]"
+                      cachedDataType="i4"
+                      cachedName="Id"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[Id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[Id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[UniqueMatch]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="UniqueMatch"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[UniqueMatch]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[UniqueMatch]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[District]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="District"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[District]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[District]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[LockName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LockName"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LockName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LockName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[VesselNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="VesselNumber"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[VesselNumber]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[VesselNumber]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[VesselName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="VesselName"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[VesselName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[VesselName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[Direction]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Direction"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[Direction]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[Direction]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[Arrival]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Arrival"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[Arrival]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[Arrival]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[StartOfLockage]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartOfLockage"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[StartOfLockage]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[StartOfLockage]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[EndOfLockage]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndOfLockage"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[EndOfLockage]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[EndOfLockage]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[DelayMinutes]"
+                      cachedDataType="i4"
+                      cachedName="DelayMinutes"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[DelayMinutes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[DelayMinutes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[ProcessingMinutes]"
+                      cachedDataType="i4"
+                      cachedName="ProcessingMinutes"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[ProcessingMinutes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[ProcessingMinutes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[EmptyBarges]"
+                      cachedDataType="i4"
+                      cachedName="EmptyBarges"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[EmptyBarges]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[EmptyBarges]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[LoadedBarges]"
+                      cachedDataType="i4"
+                      cachedName="LoadedBarges"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LoadedBarges]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LoadedBarges]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[LockChamberId]"
+                      cachedDataType="i4"
+                      cachedName="LockChamberId"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[LockChamberId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LockChamberId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[HourId]"
+                      cachedDataType="i4"
+                      cachedName="HourId"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[HourId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[HourId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[HourMatch]"
+                      cachedDataType="wstr"
+                      cachedLength="53"
+                      cachedName="HourMatch"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[HourMatch]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[HourMatch]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 1].Columns[VesselId]"
+                      cachedDataType="i4"
+                      cachedName="VesselId"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[VesselId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[VesselId]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[River]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="River"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[River]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[River]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[LockNumber]"
+                      cachedDataType="ui1"
+                      cachedName="LockNumber"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LockNumber]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LockNumber]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[ChamberNumber]"
+                      cachedDataType="ui1"
+                      cachedName="ChamberNumber"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[ChamberNumber]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[ChamberNumber]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[Id]"
+                      cachedDataType="i4"
+                      cachedName="Id"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[Id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[Id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[UniqueMatch]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="UniqueMatch"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[UniqueMatch]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[UniqueMatch]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[District]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="District"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[District]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[District]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[LockName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LockName"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LockName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LockName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[VesselNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="VesselNumber"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[VesselNumber]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[VesselNumber]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[VesselName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="VesselName"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[VesselName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[VesselName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[Direction]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Direction"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[Direction]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[Direction]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[Arrival]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Arrival"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[Arrival]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[Arrival]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[StartOfLockage]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartOfLockage"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[StartOfLockage]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[StartOfLockage]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[EndOfLockage]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndOfLockage"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[EndOfLockage]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[EndOfLockage]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[DelayMinutes]"
+                      cachedDataType="i4"
+                      cachedName="DelayMinutes"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[DelayMinutes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[DelayMinutes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[ProcessingMinutes]"
+                      cachedDataType="i4"
+                      cachedName="ProcessingMinutes"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[ProcessingMinutes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[ProcessingMinutes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[EmptyBarges]"
+                      cachedDataType="i4"
+                      cachedName="EmptyBarges"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[EmptyBarges]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[EmptyBarges]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[LoadedBarges]"
+                      cachedDataType="i4"
+                      cachedName="LoadedBarges"
+                      lineageId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output].Columns[LoadedBarges]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LoadedBarges]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[LockChamberId]"
+                      cachedDataType="i4"
+                      cachedName="LockChamberId"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[LockChamberId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LockChamberId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[HourId]"
+                      cachedDataType="i4"
+                      cachedName="HourId"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[HourId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[HourId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[HourMatch]"
+                      cachedDataType="wstr"
+                      cachedLength="53"
+                      cachedName="HourMatch"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[HourMatch]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[HourMatch]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load DW Tables\Union All.Inputs[Union All Input 2].Columns[VesselId]"
+                      cachedDataType="i4"
+                      cachedName="VesselId"
+                      lineageId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output].Columns[VesselId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[VesselId]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load DW Tables\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[River]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[River]"
+                      name="River" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LockNumber]"
+                      dataType="ui1"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LockNumber]"
+                      name="LockNumber" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[ChamberNumber]"
+                      dataType="ui1"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[ChamberNumber]"
+                      name="ChamberNumber" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[Id]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[Id]"
+                      name="Id" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[UniqueMatch]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[UniqueMatch]"
+                      name="UniqueMatch" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[District]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[District]"
+                      name="District" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LockName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LockName]"
+                      name="LockName" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[VesselNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[VesselNumber]"
+                      name="VesselNumber" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[VesselName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[VesselName]"
+                      name="VesselName" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[Direction]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[Direction]"
+                      name="Direction" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[Arrival]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[Arrival]"
+                      name="Arrival" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[StartOfLockage]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[StartOfLockage]"
+                      name="StartOfLockage" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[EndOfLockage]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[EndOfLockage]"
+                      name="EndOfLockage" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[DelayMinutes]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[DelayMinutes]"
+                      name="DelayMinutes" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[ProcessingMinutes]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[ProcessingMinutes]"
+                      name="ProcessingMinutes" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[EmptyBarges]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[EmptyBarges]"
+                      name="EmptyBarges" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LoadedBarges]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LoadedBarges]"
+                      name="LoadedBarges" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LockChamberId]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[LockChamberId]"
+                      name="LockChamberId" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[HourId]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[HourId]"
+                      name="HourId" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[HourMatch]"
+                      dataType="wstr"
+                      length="53"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[HourMatch]"
+                      name="HourMatch" />
+                    <outputColumn
+                      refId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[VesselId]"
+                      dataType="i4"
+                      lineageId="Package\Load DW Tables\Union All.Outputs[Union All Output 1].Columns[VesselId]"
+                      name="VesselId" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
           </components>
           <paths>
             <path
@@ -1021,15 +1887,30 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
               name="Derived Column Output"
               startId="Package\Load DW Tables\Add Columns.Outputs[Derived Column Output]" />
             <path
+              refId="Package\Load DW Tables.Paths[Lookup Match Output]"
+              endId="Package\Load DW Tables\Union All.Inputs[Union All Input 1]"
+              name="Lookup Match Output"
+              startId="Package\Load DW Tables\Lookup LockChamber.Outputs[Lookup Match Output]" />
+            <path
               refId="Package\Load DW Tables.Paths[Lookup No Match Output]"
-              endId="Package\Load DW Tables\Insert Lock Chamber.Inputs[OLE DB Command Input]"
+              endId="Package\Load DW Tables\Insert LockChamber.Inputs[OLE DB Command Input]"
               name="Lookup No Match Output"
               startId="Package\Load DW Tables\Lookup LockChamber.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Load DW Tables.Paths[OLE DB Command Output]"
+              endId="Package\Load DW Tables\Union All.Inputs[Union All Input 2]"
+              name="OLE DB Command Output"
+              startId="Package\Load DW Tables\Insert LockChamber.Outputs[OLE DB Command Output]" />
             <path
               refId="Package\Load DW Tables.Paths[OLE DB Source Output]"
               endId="Package\Load DW Tables\Add Columns.Inputs[Derived Column Input]"
               name="OLE DB Source Output"
               startId="Package\Load DW Tables\InputLockQueue.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load DW Tables.Paths[Union All Output 1]"
+              endId="Package\Load DW Tables\Lookup DimHour.Inputs[Lookup Input]"
+              name="Union All Output 1"
+              startId="Package\Load DW Tables\Union All.Outputs[Union All Output 1]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1058,7 +1939,19 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
     design-time-name="Package\Load DW Tables">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Load DW Tables\Lookup LockChamber"
+          TopLeft="59.7142857142857,183.714285714286" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Load DW Tables\Lookup DimHour"
+          TopLeft="68,428.875" />
+        <NodeLayout
+          Size="165.5,42"
+          Id="Package\Load DW Tables\Insert LockChamber"
+          TopLeft="329.604166666667,262.291666666667" />
         <NodeLayout
           Size="160,42"
           Id="Package\Load DW Tables\InputLockQueue"
@@ -1089,24 +1982,68 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="180,42"
-          Id="Package\Load DW Tables\Lookup LockChamber"
-          TopLeft="59.7142857142857,183.464285714286" />
         <EdgeLayout
-          Id="Package\Load DW Tables.Paths[Derived Column Output]"
-          TopLeft="134.789285714286,144.75">
+          Id="Package\Load DW Tables.Paths[Lookup No Match Output]"
+          TopLeft="149.714285714286,225.714285714286">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,38.7142857142857"
+              EndConnector="262.639880952381,36.577380952381"
               Start="0,0"
-              End="0,31.2142857142857">
+              End="262.639880952381,29.077380952381">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.2142857142857" />
+                    End="0,14.2886904761905" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.2886904761905"
+                    Point2="0,18.2886904761905"
+                    Point3="4,18.2886904761905" />
+                  <mssgle:LineSegment
+                    End="258.639880952381,18.2886904761905" />
+                  <mssgle:CubicBezierSegment
+                    Point1="258.639880952381,18.2886904761905"
+                    Point2="262.639880952381,18.2886904761905"
+                    Point3="262.639880952381,22.2886904761905" />
+                  <mssgle:LineSegment
+                    End="262.639880952381,29.077380952381" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="75.5135537574407,23.2886904761905,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load DW Tables.Paths[Derived Column Output]"
+          TopLeft="133.75,144.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.9642857142857,38.964285714286"
+              Start="0,0"
+              End="15.9642857142857,31.464285714286">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.482142857143" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.482142857143"
+                    Point2="0,19.482142857143"
+                    Point3="4,19.482142857143" />
+                  <mssgle:LineSegment
+                    End="11.9642857142857,19.482142857143" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.9642857142857,19.482142857143"
+                    Point2="15.9642857142857,19.482142857143"
+                    Point3="15.9642857142857,23.482142857143" />
+                  <mssgle:LineSegment
+                    End="15.9642857142857,31.464285714286" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1116,48 +2053,138 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="165.5,42"
-          Id="Package\Load DW Tables\Insert Lock Chamber"
-          TopLeft="330.416666666667,261.666666666667" />
+          Size="120.5,42"
+          Id="Package\Load DW Tables\Union All"
+          TopLeft="80.25,337.5" />
         <EdgeLayout
-          Id="Package\Load DW Tables.Paths[Lookup No Match Output]"
-          TopLeft="149.714285714286,225.464285714286">
+          Id="Package\Load DW Tables.Paths[Lookup Match Output]"
+          TopLeft="121.39880952381,225.714285714286">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="263.452380952381,36.2023809523809"
+              EndConnector="0,111.785714285714"
               Start="0,0"
-              End="263.452380952381,28.7023809523809">
+              End="0,104.285714285714">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.1011904761905" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,14.1011904761905"
-                    Point2="0,18.1011904761905"
-                    Point3="4,18.1011904761905" />
-                  <mssgle:LineSegment
-                    End="259.452380952381,18.1011904761905" />
-                  <mssgle:CubicBezierSegment
-                    Point1="259.452380952381,18.1011904761905"
-                    Point2="263.452380952381,18.1011904761905"
-                    Point3="263.452380952381,22.1011904761905" />
-                  <mssgle:LineSegment
-                    End="263.452380952381,28.7023809523809" />
+                    End="0,104.285714285714" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="75.9198037574405,23.1011904761905,111.6127734375,11.609375"
+              BoundingBox="-48.19138671875,46.338169642857,96.3827734375,11.609375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load DW Tables.Paths[OLE DB Command Output]"
+          TopLeft="412.354166666667,304.291666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-253.104166666667,33.208333333333"
+              Start="0,0"
+              End="-253.104166666667,25.708333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.6639025389023" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.6639025389023"
+                    Point2="0,19.6639025389023"
+                    Point3="-4,19.6639025389023" />
+                  <mssgle:LineSegment
+                    End="-249.104166666667,19.6639025389023" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-249.104166666667,19.6639025389023"
+                    Point2="-253.104166666667,19.6639025389023"
+                    Point3="-253.104166666667,23.6639025389023" />
+                  <mssgle:LineSegment
+                    End="-253.104166666667,25.708333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load DW Tables.Paths[Union All Output 1]"
+          TopLeft="143.75,379.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.375"
+              Start="0,0"
+              End="0,41.875">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.875" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load DW Tables\Lookup LockChamber">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimLockChamber]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load DW Tables\Lookup DimHour">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimHour]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load DW Tables\InputLockQueue">
     <Properties>
@@ -1168,29 +2195,6 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load DW Tables\Lookup LockChamber">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimLockChamber]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
