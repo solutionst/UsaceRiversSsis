@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="LoadDwDimensions"
   DTS:PackageType="5"
-  DTS:VersionBuild="37"
-  DTS:VersionGUID="{C80F67FE-8887-4099-8274-6855CFD75C63}">
+  DTS:VersionBuild="41"
+  DTS:VersionGUID="{43C26206-A936-4A6D-AD11-682F95FBD6D8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -29,6 +29,40 @@
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load DimHour from InputLockQueue"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{156CB04B-276D-4C99-8E83-DD3C1630C2E0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimHour from InputLockQueue"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D64E1E95-C39A-4EA1-B044-2DCAA46DEA2C}"
+          SQLTask:SqlStatementSource="USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;-- Create a temporary table for hour dimensions found in the raw input&#xA;DROP TABLE IF EXISTS #FoundDimHour;&#xA;CREATE TABLE #FoundDimHour (&#xA;&#x9;[HourId] [int] NULL,&#xA;&#x9;[HourMatch] [varchar](50) NULL,&#xA;&#x9;[Year] [smallint]  NULL,&#xA;&#x9;[MonthNumberOfYear] [tinyint]  NULL,&#xA;&#x9;[DayOfMonth] [tinyint]  NULL,&#xA;&#x9;[HourOfDay] [tinyint]  NULL,&#xA;&#x9;[DayNumberOfWeek] [tinyint]  NULL,&#xA;&#x9;[DayNameOfWeek] [nvarchar](10)  NULL,&#xA;&#x9;[DayNumberOfYear] [smallint]  NULL,&#xA;&#x9;[WeekNumberOfYear] [tinyint]  NULL,&#xA;&#x9;[MonthName] [nvarchar](10)  NULL,&#xA;&#x9;[CalendarQuarter] [tinyint]  NULL,&#xA;&#x9;[TimeCreated] [datetime] NULL)&#xA;  ON [PRIMARY];&#xA;  &#xA;-- Find the earliest and latest dates in the InputLockQueue table&#xA;DECLARE @MinDate DateTime;&#xA;DECLARE @MaxDate DateTime;&#xA;&#xA;SET @MinDate = (SELECT MIN (StartOfLockage) FROM InputLockQueue);&#xA;PRINT @MinDate;&#xA;SET @MaxDate = (SELECT MAX (StartOfLockage) FROM InputLockQueue);&#xA;PRINT @MaxDate;&#xA;&#xA;-- Loop for all dates&#xA;DECLARE @LoopDate DateTime;&#xA;SET @LoopDate = @MinDate;&#xA;&#xA;WHILE @LoopDate &lt;= @MaxDate&#xA;BEGIN&#xA;&#xA;INSERT INTO #FoundDimHour&#xA;([HourMatch]&#xA;           ,[Year]&#xA;           ,[MonthNumberOfYear]&#xA;           ,[DayOfMonth]&#xA;           ,[HourOfDay]&#xA;           ,[DayNumberOfWeek]&#xA;           ,[DayNameOfWeek]&#xA;           ,[DayNumberOfYear]&#xA;           ,[WeekNumberOfYear]&#xA;           ,[MonthName]&#xA;           ,[CalendarQuarter]&#xA;&#x9;&#x9;   )&#xA;VALUES (&#xA;CAST(DATEPART(&quot;yyyy&quot;, @LoopDate) AS char(4)) + '-' + &#xA;RIGHT('0' + CAST(DATEPART(&quot;mm&quot;, @LoopDate) AS varchar), 2) + '-' + &#xA;RIGHT('0' + CAST(DATEPART(&quot;dd&quot;, @LoopDate) AS varchar), 2) + ' ' + &#xA;RIGHT('0' + CAST(DATEPART(&quot;Hh&quot;, @LoopDate) AS varchar), 2)&#xA;,DATEPART(&quot;yyyy&quot;, @LoopDate)&#xA;,DATEPART(&quot;mm&quot;, @LoopDate)&#xA;,DATEPART(&quot;dd&quot;, @LoopDate)&#xA;,DATEPART(&quot;Hh&quot;, @LoopDate)&#xA;,DATEPART(&quot;dw&quot;, @LoopDate)&#xA;,DATENAME(&quot;dw&quot;, @LoopDate)&#xA;,DATENAME(&quot;dy&quot;, @LoopDate)&#xA;,DATEPART(wk, @LoopDate)&#xA;,DATENAME(m, @LoopDate)&#xA;,DATEPART(q, @LoopDate)&#xA;)&#xA;&#xA;SET @LoopDate = DATEADD(hour, 1, @LoopDate);&#xA;END;&#xA;&#xA;GO&#xA;&#xA;-- Update the temp table HourId values&#xA;UPDATE #FoundDimHour&#xA;SET &#xA;  HourId = h.HourId&#xA;FROM&#xA;  DimHour h RIGHT OUTER JOIN #FoundDimHour f on h.HourMatch = f.HourMatch&#xA;WHERE f.HourId is null;&#xA;&#xA;&#xA;-- Insert the missing dimensions&#xA;INSERT INTO [dbo].[DimHour]&#xA;           ([HourMatch]&#xA;           ,[Year]&#xA;           ,[MonthNumberOfYear]&#xA;           ,[DayOfMonth]&#xA;           ,[HourOfDay]&#xA;           ,[DayNumberOfWeek]&#xA;           ,[DayNameOfWeek]&#xA;           ,[DayNumberOfYear]&#xA;           ,[WeekNumberOfYear]&#xA;           ,[MonthName]&#xA;           ,[CalendarQuarter])&#xA;     SELECT &#xA;           f.HourMatch&#xA;           ,f.[Year]&#xA;           ,f.MonthNumberOfYear&#xA;           ,f.[DayOfMonth]&#xA;           ,f.HourOfDay&#xA;           ,f.DayNumberOfWeek&#xA;           ,f.DayNameOfWeek&#xA;           ,f.DayNumberOfYear&#xA;           ,f.WeekNumberOfYear&#xA;           ,f.[MonthName]&#xA;           ,f.CalendarQuarter&#xA;&#x9;FROM #FoundDimHour f&#xA;  LEFT OUTER JOIN DimHour h on h.HourMatch = f.HourMatch&#xA;  WHERE f.HourId is NULL&#xA;  ; &#xA;&#xA; -- SELECT &#xA;&#x9;--top 1000&#xA; --     f.*&#xA; -- FROM [dbo].[DimHour] h&#xA; -- RIGHT OUTER JOIN #FoundDimHour f on h.HourMatch = f.HourMatch&#xA; -- WHERE f.HourId is NULL&#xA;  ;  &#xA;&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimLockChamber from InputLockQueue"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{277068D4-5AEC-4E72-9CB0-A395E523E434}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimLockChamber from InputLockQueue"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D64E1E95-C39A-4EA1-B044-2DCAA46DEA2C}"
+          SQLTask:SqlStatementSource="USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;-- Create a temporary table for lock chamber dimensions found in the raw input&#xA;DROP TABLE IF EXISTS #FoundDimLockChamber;&#xA;CREATE TABLE #FoundDimLockChamber (&#xA;&#x9;[LockChamberId] [int] NULL,&#xA;&#x9;[District] [varchar](50) NULL,&#xA;&#x9;[River] [varchar](50) NULL,&#xA;&#x9;[LockNumber] [tinyint] NULL,&#xA;&#x9;[LockName] [varchar](50) NULL,&#xA;&#x9;[ChamberNumber] [tinyint] NULL,&#xA;&#x9;[TimeCreated] [datetime]  NULL)&#xA;  ON [PRIMARY];&#xA;GO&#xA;INSERT into #FoundDimLockChamber&#xA;(District, River, LockNumber, LockName, ChamberNumber)&#xA;SELECT DISTINCT [District]&#xA;      ,[River]&#xA;      ,[LockNumber]&#xA;      ,[LockName]&#xA;      ,ChamberNumber&#xA;  FROM [UsaceRiversDW].[dbo].[InputLockQueue]&#xA;&#xA;-- Update the temp table HourId values&#xA;UPDATE #FoundDimLockChamber&#xA;SET &#xA;  LockChamberId = lc.LockChamberId&#xA;FROM&#xA;  DimLockChamber lc RIGHT OUTER JOIN #FoundDimLockChamber f &#xA;  on f.District = lc.District and f.River = lc.River&#xA;    AND f.LockNumber = lc.LockNumber AND f.LockName = lc.LockName&#xA;&#x9;AND f.ChamberNumber = lc.ChamberNumber&#xA;WHERE f.LockChamberId is null;&#xA;&#xA;--SELECT * from #FoundDimLockChamber where LockChamberId is not null;&#xA;&#xA;-- Insert the missing dimensions&#xA;USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;INSERT INTO [dbo].[DimLockChamber]&#xA;           ([District]&#xA;           ,[River]&#xA;           ,[LockNumber]&#xA;           ,[LockName]&#xA;           ,[ChamberNumber])&#xA;     SELECT&#xA;&#x9;&#x9;District&#xA;&#x9;&#x9;,River&#xA;&#x9;&#x9;,LockNumber&#xA;&#x9;&#x9;,LockName&#xA;&#x9;&#x9;,ChamberNumber&#xA;&#x9;FROM #FoundDimLockChamber&#xA;&#x9;WHERE LockChamberId is null;&#xA;&#xA;GO&#xA;&#xA;SELECT * FROM DimLockChamber;&#xA;&#xA;GO&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Load DW Tables"
       DTS:CreationName="Microsoft.Pipeline"
@@ -639,6 +673,16 @@
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{BD47C7E0-805D-4405-BDA1-9EA03A29ADB8}"
+      DTS:From="Package\Load DimHour from InputLockQueue"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load DimLockChamber from InputLockQueue" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -650,11 +694,41 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="155.5,42"
           Id="Package\Load DW Tables"
-          TopLeft="65.5,93.75" />
+          TopLeft="74.25,167.5" />
+        <NodeLayout
+          Size="175.5,52"
+          Id="Package\Load DimHour from InputLockQueue"
+          TopLeft="72.75,8" />
+        <NodeLayout
+          Size="261.5,53.5"
+          Id="Package\Load DimLockChamber from InputLockQueue"
+          TopLeft="37,90.25" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="164.125,60">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.25"
+              Start="0,0"
+              End="0,22.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
