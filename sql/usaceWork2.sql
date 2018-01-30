@@ -70,18 +70,6 @@ END;
 
 GO
 
---select top 200 * from #FoundDimHour;
---SELECT COUNT(*) FROM #FoundDimHour;
-
--- Figure out which of these DimHour candidates have already been loaded
---SELECT 
---top 10000
---      f.HourId
---	  ,h.HourId
---  FROM [dbo].[DimHour] h
---  RIGHT OUTER JOIN #FoundDimHour f on h.HourMatch = f.HourMatch
---  WHERE f.HourId is NULL; 
-
 -- Update the temp table HourId values
 UPDATE #FoundDimHour
 SET 
@@ -119,16 +107,14 @@ INSERT INTO [dbo].[DimHour]
 	FROM #FoundDimHour f
   LEFT OUTER JOIN DimHour h on h.HourMatch = f.HourMatch
   WHERE f.HourId is NULL
-  --AND h.HourMatch <> f.HourMatch
   ; 
 
-  SELECT 
-top 1000
-      f.*
-  FROM [dbo].[DimHour] h
-  RIGHT OUTER JOIN #FoundDimHour f on h.HourMatch = f.HourMatch
-  WHERE f.HourId is NULL
-  --AND h.HourMatch <> f.HourMatch;
+ -- SELECT 
+	--top 1000
+ --     f.*
+ -- FROM [dbo].[DimHour] h
+ -- RIGHT OUTER JOIN #FoundDimHour f on h.HourMatch = f.HourMatch
+ -- WHERE f.HourId is NULL
   ;  
 
 GO
