@@ -1,9 +1,6 @@
 USE [UsaceRiversDW]
 GO
 
-
-
-
 -- Create a temporary table for hour dimensions found in the raw input
 DROP TABLE IF EXISTS #FoundDimHour;
 CREATE TABLE #FoundDimHour (
@@ -77,9 +74,66 @@ GO
 --SELECT COUNT(*) FROM #FoundDimHour;
 
 -- Figure out which of these DimHour candidates have already been loaded
-SELECT top 100
+--SELECT 
+--top 10000
+--      f.HourId
+--	  ,h.HourId
+--  FROM [dbo].[DimHour] h
+--  RIGHT OUTER JOIN #FoundDimHour f on h.HourMatch = f.HourMatch
+--  WHERE f.HourId is NULL; 
+
+-- Update the temp table HourId values
+UPDATE #FoundDimHour
+SET 
+  HourId = h.HourId
+FROM
+  DimHour h RIGHT OUTER JOIN #FoundDimHour f on h.HourMatch = f.HourMatch
+WHERE f.HourId is null;
+
+
+-- Insert the missing dimensions
+INSERT INTO [dbo].[DimHour]
+           ([HourMatch]
+           ,[Year]
+           ,[MonthNumberOfYear]
+           ,[DayOfMonth]
+           ,[HourOfDay]
+           ,[DayNumberOfWeek]
+           ,[DayNameOfWeek]
+           ,[DayNumberOfYear]
+           ,[WeekNumberOfYear]
+           ,[MonthName]
+           ,[CalendarQuarter])
+     SELECT 
+           f.HourMatch
+           ,f.[Year]
+           ,f.MonthNumberOfYear
+           ,f.[DayOfMonth]
+           ,f.HourOfDay
+           ,f.DayNumberOfWeek
+           ,f.DayNameOfWeek
+           ,f.DayNumberOfYear
+           ,f.WeekNumberOfYear
+           ,f.[MonthName]
+           ,f.CalendarQuarter
+	FROM #FoundDimHour f
+  LEFT OUTER JOIN DimHour h on h.HourMatch = f.HourMatch
+  WHERE f.HourId is NULL
+  --AND h.HourMatch <> f.HourMatch
+  ; 
+
+  SELECT 
+top 1000
       f.*
   FROM [dbo].[DimHour] h
   RIGHT OUTER JOIN #FoundDimHour f on h.HourMatch = f.HourMatch
-  WHERE H.HourId is NULL; 
+  WHERE f.HourId is NULL
+  --AND h.HourMatch <> f.HourMatch;
+  ;  
+
+GO
+
+
+
+
 
