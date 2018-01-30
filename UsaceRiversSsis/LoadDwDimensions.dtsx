@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="LoadDwDimensions"
   DTS:PackageType="5"
-  DTS:VersionBuild="33"
-  DTS:VersionGUID="{4762A91F-7FF3-46F6-9716-185E3AD5EA5B}">
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{DEE54F9E-F58B-40DB-B02A-393C8288954B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -2053,7 +2053,7 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
         <NodeLayout
           Size="155.5,42"
           Id="Package\Load DW Tables"
-          TopLeft="86,37.5" />
+          TopLeft="65.5,93.75" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
