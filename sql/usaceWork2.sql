@@ -71,14 +71,15 @@ RIGHT('0' + CAST(DATEPART("Hh", @LoopDate) AS varchar), 2)
 SET @LoopDate = DATEADD(hour, 1, @LoopDate);
 END;
 
-
 GO
 
-select top 200 * from #FoundDimHour;
+--select top 200 * from #FoundDimHour;
+--SELECT COUNT(*) FROM #FoundDimHour;
 
---SELECT top 100
---CAST(DATEPART("yyyy", StartOfLockage) AS char(4)) + '-' + 
---LEFT('0' + CAST(DATEPART("mm", StartOfLockage) AS char(2)), 2) + '-' + 
---LEFT('0' + CAST(DATEPART("dd", StartOfLockage) AS char(2)), 2) + ' ' + 
---LEFT('0' + CAST(DATEPART("Hh", StartOfLockage) AS char(2)), 2)
---FROM InputLockQueue;
+-- Figure out which of these DimHour candidates have already been loaded
+SELECT top 100
+      f.*
+  FROM [dbo].[DimHour] h
+  RIGHT OUTER JOIN #FoundDimHour f on h.HourMatch = f.HourMatch
+  WHERE H.HourId is NULL; 
+
