@@ -1,0 +1,196 @@
+﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="f089c965-8471-46d3-b579-1639a73cdbcc" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Usace Rivers DW</ID>
+  <Name>Usace Rivers DW</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+      <Value>_ALL_TABLES_</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+      <Value></Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+      <Value>
+        <Layouts xmlns="">
+          <Diagram>
+            <Name>_ALL_TABLES_</Name>
+            <DiagramLayout />
+            <ShowRelationshipNames>False</ShowRelationshipNames>
+            <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+            <DiagramViewPortLeft>0</DiagramViewPortLeft>
+            <DiagramViewPortTop>0</DiagramViewPortTop>
+            <DiagramBoundingLeft>0</DiagramBoundingLeft>
+            <DiagramBoundingTop>0</DiagramBoundingTop>
+            <DiagramZoom>100</DiagramZoom>
+          </Diagram>
+        </Layouts>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <DataSourceID>Usace Rivers DW</DataSourceID>
+  <Schema>
+    <xs:schema id="Usace_x0020_Rivers_x0020_DW" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+      <xs:element name="Usace_x0020_Rivers_x0020_DW" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="8474f5b3-dea6-4d10-940f-7448e32f9fb8">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="dbo_FactLockage" msprop:design-time-name="4ef94363-7cd8-496d-a3a3-0d2d992a3ff8" msprop:DbTableName="FactLockage" msprop:FriendlyName="FactLockage" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="PassageId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="028dc6e2-6e56-49f8-8f91-f2a769a63496" msprop:DbColumnName="PassageId" msprop:FriendlyName="PassageId" type="xs:int" />
+                  <xs:element name="LockChamberId" msprop:design-time-name="2fa66530-f1a8-436e-abb2-6bcef9205d71" msprop:DbColumnName="LockChamberId" msprop:FriendlyName="LockChamberId" type="xs:int" />
+                  <xs:element name="VesselId" msprop:design-time-name="bed65bd2-5482-4f7a-bbee-29f99e76ff25" msprop:DbColumnName="VesselId" msprop:FriendlyName="VesselId" type="xs:int" />
+                  <xs:element name="TimeId" msprop:design-time-name="7c7da325-b395-4085-ab88-7f596ca65c55" msprop:DbColumnName="TimeId" msprop:FriendlyName="TimeId" type="xs:int" />
+                  <xs:element name="PassageArrival" msprop:design-time-name="bef44734-1431-4775-a845-a1b9bea39b90" msprop:DbColumnName="PassageArrival" msprop:FriendlyName="PassageArrival" type="xs:dateTime" />
+                  <xs:element name="StartOfLockage" msprop:design-time-name="2fb51986-519d-4af3-84ce-7b168379aa32" msprop:DbColumnName="StartOfLockage" msprop:FriendlyName="StartOfLockage" type="xs:dateTime" />
+                  <xs:element name="EndOfLockage" msprop:design-time-name="14b73303-4805-441b-8af1-c37a7b4fc7b5" msprop:DbColumnName="EndOfLockage" msprop:FriendlyName="EndOfLockage" type="xs:dateTime" />
+                  <xs:element name="DelayMinutes" msprop:design-time-name="bdb1324b-fb56-4901-b5c5-6b0aca751107" msprop:DbColumnName="DelayMinutes" msprop:FriendlyName="DelayMinutes" type="xs:int" />
+                  <xs:element name="ProcessingMinutes" msprop:design-time-name="cfc47a9a-889f-4ee4-96ac-9835209292ff" msprop:DbColumnName="ProcessingMinutes" msprop:FriendlyName="ProcessingMinutes" type="xs:short" />
+                  <xs:element name="EmptyBarges" msprop:design-time-name="682b7309-7d88-4de7-8f67-8e8a0d78ee8f" msprop:DbColumnName="EmptyBarges" msprop:FriendlyName="EmptyBarges" type="xs:unsignedByte" />
+                  <xs:element name="LoadedBarges" msprop:design-time-name="7699d25e-aab1-4925-afce-7eff8aad9f48" msprop:DbColumnName="LoadedBarges" msprop:FriendlyName="LoadedBarges" type="xs:unsignedByte" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_DimLockChamber" msprop:design-time-name="14c22bcd-68a9-44f9-ac10-5f1667b69d0e" msprop:DbTableName="DimLockChamber" msprop:FriendlyName="DimLockChamber" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="LockChamberId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="fff9a484-1e85-4ef2-b144-7cddbbfec580" msprop:DbColumnName="LockChamberId" msprop:FriendlyName="LockChamberId" type="xs:int" />
+                  <xs:element name="District" msprop:design-time-name="f07ac45b-4594-488d-b1f0-1a4098379286" msprop:DbColumnName="District" msprop:FriendlyName="District" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="River" msprop:design-time-name="e1aefafe-2f9a-4b7b-96b5-f5d580aec6ea" msprop:DbColumnName="River" msprop:FriendlyName="River" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="LockNumber" msprop:design-time-name="b5d9c1be-5d98-4195-b46f-bdd09ce5c7db" msprop:DbColumnName="LockNumber" msprop:FriendlyName="LockNumber" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="LockName" msprop:design-time-name="653fde24-aa13-4bf5-ab26-6dc511ea4874" msprop:DbColumnName="LockName" msprop:FriendlyName="LockName" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ChamberNumber" msprop:design-time-name="b3c17e74-fbcd-4a34-bead-5407d6253451" msprop:DbColumnName="ChamberNumber" msprop:FriendlyName="ChamberNumber" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="TimeCreated" msprop:design-time-name="6f83183c-4678-4d30-9e4b-5b14fec8a1d9" msprop:DbColumnName="TimeCreated" msprop:FriendlyName="TimeCreated" type="xs:dateTime" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_DimVessel" msprop:design-time-name="1feacb3b-978c-4f1e-8dfa-733a7d79d56e" msprop:DbTableName="DimVessel" msprop:FriendlyName="DimVessel" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="VesselId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="2435b62e-95a3-40e5-86f4-7d6ac0ef792c" msprop:DbColumnName="VesselId" msprop:FriendlyName="VesselId" type="xs:int" />
+                  <xs:element name="VesselName" msprop:design-time-name="1cd9889c-565a-4baf-ab3a-c15a40f5a40d" msprop:DbColumnName="VesselName" msprop:FriendlyName="VesselName" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="VesselNumber" msprop:design-time-name="79eed9e5-45c4-46ab-9dd5-e869ee0a7447" msprop:DbColumnName="VesselNumber" msprop:FriendlyName="VesselNumber" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="VesselType" msprop:design-time-name="85479162-2488-492e-af76-0942b5af1164" msprop:DbColumnName="VesselType" msprop:FriendlyName="VesselType" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="TimeCreated" msprop:design-time-name="587c48e2-fed6-43b0-b7da-7aad676c1972" msprop:DbColumnName="TimeCreated" msprop:FriendlyName="TimeCreated" type="xs:dateTime" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_DimHour" msprop:design-time-name="19cced50-2ed4-4d5d-9d83-6f69bd9b5dbf" msprop:DbTableName="DimHour" msprop:FriendlyName="DimHour" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="HourId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="2a7b7ff4-9289-4387-9157-e7800eb9c032" msprop:DbColumnName="HourId" msprop:FriendlyName="HourId" type="xs:int" />
+                  <xs:element name="HourMatch" msprop:design-time-name="f6d1c144-5db8-4769-bb3b-92ebdbf57b48" msprop:DbColumnName="HourMatch" msprop:FriendlyName="HourMatch" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Year" msprop:design-time-name="6da1c2b5-3697-4a24-b414-1124feaf1f61" msprop:DbColumnName="Year" msprop:FriendlyName="Year" type="xs:short" />
+                  <xs:element name="MonthNumberOfYear" msprop:design-time-name="b0787878-bf56-456f-a1be-672dd2acec8c" msprop:DbColumnName="MonthNumberOfYear" msprop:FriendlyName="MonthNumberOfYear" type="xs:unsignedByte" />
+                  <xs:element name="DayOfMonth" msprop:design-time-name="b6c35a66-687f-40a8-a33b-5e67fa56b401" msprop:DbColumnName="DayOfMonth" msprop:FriendlyName="DayOfMonth" type="xs:unsignedByte" />
+                  <xs:element name="HourOfDay" msprop:design-time-name="ec82498a-3afd-4f2e-8262-b7640f74b443" msprop:DbColumnName="HourOfDay" msprop:FriendlyName="HourOfDay" type="xs:unsignedByte" />
+                  <xs:element name="DayNumberOfWeek" msprop:design-time-name="b2658223-e8b5-4c8c-b8bc-2f95ab08bef5" msprop:DbColumnName="DayNumberOfWeek" msprop:FriendlyName="DayNumberOfWeek" type="xs:unsignedByte" />
+                  <xs:element name="DayNameOfWeek" msprop:design-time-name="9cd69f54-23d7-450e-8443-1c6720f04982" msprop:DbColumnName="DayNameOfWeek" msprop:FriendlyName="DayNameOfWeek">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="DayNumberOfYear" msprop:design-time-name="1764ed28-5c48-4ffc-8343-eaebb2738cf8" msprop:DbColumnName="DayNumberOfYear" msprop:FriendlyName="DayNumberOfYear" type="xs:short" />
+                  <xs:element name="WeekNumberOfYear" msprop:design-time-name="6c0cbbfe-49fe-4f26-825c-72a292b19b2e" msprop:DbColumnName="WeekNumberOfYear" msprop:FriendlyName="WeekNumberOfYear" type="xs:unsignedByte" />
+                  <xs:element name="MonthName" msprop:design-time-name="1162edbc-ce48-4429-8ebc-c3f5d49c3e4f" msprop:DbColumnName="MonthName" msprop:FriendlyName="MonthName">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="CalendarQuarter" msprop:design-time-name="2c35a310-259c-455e-a59b-400276fce025" msprop:DbColumnName="CalendarQuarter" msprop:FriendlyName="CalendarQuarter" type="xs:unsignedByte" />
+                  <xs:element name="TimeCreated" msprop:design-time-name="760c622b-11fc-4524-864f-6000674ba8a6" msprop:DbColumnName="TimeCreated" msprop:FriendlyName="TimeCreated" type="xs:dateTime" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+        <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_FactLockage" />
+          <xs:field xpath="PassageId" />
+        </xs:unique>
+        <xs:unique name="dbo_DimLockChamber_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DimLockChamber" />
+          <xs:field xpath="LockChamberId" />
+        </xs:unique>
+        <xs:unique name="dbo_DimVessel_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DimVessel" />
+          <xs:field xpath="VesselId" />
+        </xs:unique>
+        <xs:unique name="dbo_DimHour_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DimHour" />
+          <xs:field xpath="HourId" />
+        </xs:unique>
+        <xs:keyref name="FK_FactLockage_DimVessel" refer="dbo_DimVessel_Constraint1">
+          <xs:selector xpath=".//dbo_FactLockage" />
+          <xs:field xpath="VesselId" />
+        </xs:keyref>
+        <xs:keyref name="FK_FactLockage_DimLock" refer="dbo_DimLockChamber_Constraint1">
+          <xs:selector xpath=".//dbo_FactLockage" />
+          <xs:field xpath="LockChamberId" />
+        </xs:keyref>
+        <xs:keyref name="FK_FactLockage_DimTime" refer="dbo_DimHour_Constraint1">
+          <xs:selector xpath=".//dbo_FactLockage" />
+          <xs:field xpath="TimeId" />
+        </xs:keyref>
+      </xs:element>
+    </xs:schema>
+    <Usace_x0020_Rivers_x0020_DW xmlns="" />
+  </Schema>
+</DataSourceView>

@@ -1,0 +1,207 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="f98cf879-8abe-4a0c-85a8-fd9bcf22daf3" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Usace Rivers DW</ID>
+  <Name>Usace Rivers DW</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="f0738300-9ece-43a6-984d-cb12532ecd97">
+      <ID>Dim Lock Chamber</ID>
+      <Name>Dim Lock Chamber</Name>
+      <DimensionID>Dim Lock Chamber</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="af432e71-7dd6-4961-8618-172530536772">
+          <AttributeID>Lock Chamber Id</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="08147d95-dffa-4efe-9240-b3a042e28668">
+      <ID>Dim Vessel</ID>
+      <Name>Dim Vessel</Name>
+      <DimensionID>Dim Vessel</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="df9083f6-e199-495b-bf1c-40e478278766">
+          <AttributeID>Vessel Id</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="77fc0d36-c9c5-484f-9614-503498a5168d">
+      <ID>Dim Hour</ID>
+      <Name>Dim Hour</Name>
+      <DimensionID>Dim Hour</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="93190cef-7514-4b5e-98c5-bed88a6b4c59">
+          <AttributeID>Hour Id</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+  </Dimensions>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="1c8e5e97-6217-4c7c-89c7-0eca598d5f66">
+      <ID>Fact Lockage</ID>
+      <Name>Fact Lockage</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="b45124c0-65aa-4448-88da-81a835b427da">
+          <ID>Delay Minutes</ID>
+          <Name>Delay Minutes</Name>
+          <Source dwd:design-time-name="0329a6d2-3617-452f-9ee3-5859a762927a">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="dbbf98ed-436a-49c8-ba26-992be10940ed">
+              <TableID>dbo_FactLockage</TableID>
+              <ColumnID>DelayMinutes</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="3392945a-7626-4efd-b975-5bf45ac6a8a7">
+          <ID>Processing Minutes</ID>
+          <Name>Processing Minutes</Name>
+          <Source dwd:design-time-name="bc47d729-5ea9-458b-b44b-1fbb71be5a3c">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="41da608d-3f40-41d5-a553-2373a505d925">
+              <TableID>dbo_FactLockage</TableID>
+              <ColumnID>ProcessingMinutes</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="4578c725-8dd7-4068-a1b4-376f55217938">
+          <ID>Empty Barges</ID>
+          <Name>Empty Barges</Name>
+          <Source dwd:design-time-name="77b2f493-ddcc-4bcb-ac4b-02bd7b4f94d7">
+            <DataType>UnsignedInt</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="a0d05fa7-ec42-482d-9fd7-e951f2fa8111">
+              <TableID>dbo_FactLockage</TableID>
+              <ColumnID>EmptyBarges</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="8468a601-ebde-4698-96ec-da76100b02de">
+          <ID>Loaded Barges</ID>
+          <Name>Loaded Barges</Name>
+          <Source dwd:design-time-name="45a2b2a9-60bb-4d71-8186-57c494856d9f">
+            <DataType>UnsignedInt</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="7c4126c8-1378-4382-b682-b5850a438ff6">
+              <TableID>dbo_FactLockage</TableID>
+              <ColumnID>LoadedBarges</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="a807d573-df8f-4255-bf20-c37fa681aadb">
+          <ID>Fact Lockage Count</ID>
+          <Name>Fact Lockage Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="4cf69480-8809-44b4-9b7c-14eab885a5f2">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="9a0d7352-138a-4e87-a91a-5fd4b666ae22">
+              <TableID>dbo_FactLockage</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="ea72f627-d4b1-4da1-a8ed-eae7971dcd53">
+          <CubeDimensionID>Dim Hour</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="d74a0100-4082-41e7-b81b-56f69249ca5a">
+              <AttributeID>Hour Id</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="478233b9-a340-4132-9e9c-e788aab5a0be">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="8dea924c-56b0-4513-989d-4ddab2e21c09">
+                    <TableID>dbo_FactLockage</TableID>
+                    <ColumnID>TimeId</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="0e4b6830-d284-4cf6-83cb-c1b69eb518c0">
+          <CubeDimensionID>Dim Lock Chamber</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="c2b57cd4-197e-40d6-8307-20f7cad07e49">
+              <AttributeID>Lock Chamber Id</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="ec147c6b-734a-4168-a4f0-8cee4b9af5ea">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="b5596acd-24e0-4483-8d94-734c9831b917">
+                    <TableID>dbo_FactLockage</TableID>
+                    <ColumnID>LockChamberId</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="9212661f-cd26-4e56-b545-a9d3baeea392">
+          <CubeDimensionID>Dim Vessel</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="bc25e74a-a03a-41f4-ba08-285edc9abb93">
+              <AttributeID>Vessel Id</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="eb2f385b-9acb-4de9-8306-8abc49fd99ff">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="162172f3-affd-4411-b348-e7dc0ed03b75">
+                    <TableID>dbo_FactLockage</TableID>
+                    <ColumnID>VesselId</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="14bfca18-4161-465f-9c76-d32f922782c7">
+    <DataSourceViewID>Usace Rivers DW</DataSourceViewID>
+  </Source>
+</Cube>
