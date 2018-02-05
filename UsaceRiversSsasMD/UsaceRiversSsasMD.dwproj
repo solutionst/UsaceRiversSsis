@@ -52,14 +52,13 @@
           <ConfigurationSetting>
             <Id>Usace Rivers DW</Id>
             <Name>Usace Rivers DW</Name>
-            <Value xsi:type="xsd:string">Data Source=DESKTOP-KC83MAS;Initial Catalog=UsaceRiversDW;Integrated Security=True</Value>
+            <Value xsi:type="xsd:string">Provider=SQLNCLI11.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=UsaceRiversDW</Value>
           </ConfigurationSetting>
         </ConnectionMappings>
         <ConnectionProviderMappings>
           <ConfigurationSetting>
             <Id>Usace Rivers DW</Id>
             <Name>Usace Rivers DW</Name>
-            <Value xsi:type="xsd:string">System.Data.SqlClient</Value>
           </ConfigurationSetting>
         </ConnectionProviderMappings>
         <ConnectionSecurityMappings>
