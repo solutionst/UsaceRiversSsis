@@ -11,35 +11,13 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="LoadDwFactLockQueue"
   DTS:PackageType="5"
-  DTS:VersionBuild="81"
-  DTS:VersionGUID="{0EB6A078-3C8C-43D5-8E88-89F9B857C821}">
+  DTS:VersionBuild="87"
+  DTS:VersionGUID="{1B95FC29-D0DA-4F05-A5CB-D76D37AB5EC5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{E83CC64B-3DCE-44BD-A54F-9475F505D81E}"
-      DTS:ObjectName="DESKTOP-KC83MAS.UsaceRiversDW">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=DESKTOP-KC83MAS;Initial Catalog=UsaceRiversDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[localhost.UsaceRiversDW]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{6C6589AA-DC75-437E-AB0F-E39E3B7AA71A}"
-      DTS:ObjectName="localhost.UsaceRiversDW">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=UsaceRiversDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:LogProviders>
     <DTS:LogProvider
-      DTS:ConfigString="localhost.UsaceRiversDW"
+      DTS:ConfigString="{6C6589AA-DC75-437E-AB0F-E39E3B7AA71A}"
       DTS:CreationName="Microsoft.LogProviderSQLServer"
       DTS:Description="Writes log entries for events to a SQL Server database"
       DTS:DTSID="{20E767E5-326D-4A7A-881F-5D3CCF7CFDFB}"
@@ -655,8 +633,8 @@
               <connections>
                 <connection
                   refId="Package\Load Fact Table\InputLockQueue.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
+                  connectionManagerID="{582F5992-4625-4264-BA5E-77A6D9FDA510}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost_DW_MDM.UsaceRiversDW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1110,8 +1088,8 @@ where [refTable].[HourMatch] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Fact Table\Lookup DimHour.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
+                  connectionManagerID="{582F5992-4625-4264-BA5E-77A6D9FDA510}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost_DW_MDM.UsaceRiversDW]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1273,8 +1251,8 @@ where [refTable].[River] = ? and [refTable].[LockNumber] = ? and [refTable].[Cha
               <connections>
                 <connection
                   refId="Package\Load Fact Table\Lookup DimLockChamber.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
+                  connectionManagerID="{582F5992-4625-4264-BA5E-77A6D9FDA510}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost_DW_MDM.UsaceRiversDW]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1486,8 +1464,8 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Fact Table\Lookup DimVessel.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
+                  connectionManagerID="{582F5992-4625-4264-BA5E-77A6D9FDA510}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost_DW_MDM.UsaceRiversDW]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1656,8 +1634,8 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Fact Table\Write FactLockage.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
+                  connectionManagerID="{582F5992-4625-4264-BA5E-77A6D9FDA510}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost_DW_MDM.UsaceRiversDW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1863,11 +1841,11 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
         <NodeLayout
           Size="164.5,42"
           Id="Package\Load Fact Table\Lookup DimVessel"
-          TopLeft="48.2142857142857,333.571428571429" />
+          TopLeft="48.7142857142857,333.071428571429" />
         <NodeLayout
           Size="198.5,42"
           Id="Package\Load Fact Table\Lookup DimLockChamber"
-          TopLeft="35.0357142857143,248.928571428571" />
+          TopLeft="34.2857142857143,247.928571428571" />
         <NodeLayout
           Size="165.5,42"
           Id="Package\Load Fact Table\Write FactLockage"
@@ -1875,7 +1853,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
         <NodeLayout
           Size="158,42"
           Id="Package\Load Fact Table\Lookup DimHour"
-          TopLeft="54.1428571428572,172.178571428571" />
+          TopLeft="54.1428571428572,171.678571428571" />
         <NodeLayout
           Size="160,42"
           Id="Package\Load Fact Table\InputLockQueue"
@@ -1908,73 +1886,73 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Fact Table.Paths[Lookup Match Output2]"
-          TopLeft="130.964285714286,375.571428571429">
+          TopLeft="131.214285714286,375.071428571429">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,36.7142857142857"
+              EndConnector="0,37.214285714285"
               Start="0,0"
-              End="0,29.2142857142857">
+              End="0,29.714285714285">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.2142857142857" />
+                    End="0,29.714285714285" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,8.80245535714285,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,9.05245535714249,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Fact Table.Paths[Lookup Match Output1]"
-          TopLeft="132.375,290.928571428571">
+          TopLeft="132.25,289.928571428571">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,42.6428571428572"
+              EndConnector="0,43.142857142858"
               Start="0,0"
-              End="0,35.1428571428572">
+              End="0,35.642857142858">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.1428571428572" />
+                    End="0,35.642857142858" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,11.7667410714286,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,12.016741071429,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Fact Table.Paths[Lookup Match Output]"
-          TopLeft="133.714285714286,214.178571428571">
+          TopLeft="133.339285714286,213.678571428571">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,34.75"
+              EndConnector="0,34.25"
               Start="0,0"
-              End="0,27.25">
+              End="0,26.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.25" />
+                    End="0,26.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,7.8203125,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,7.5703125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1984,14 +1962,14 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,25.9285714285714"
+              EndConnector="0,25.428571428571"
               Start="0,0"
-              End="0,18.4285714285714">
+              End="0,17.928571428571">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18.4285714285714" />
+                    End="0,17.928571428571" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2009,7 +1987,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2019,7 +1997,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2032,7 +2010,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2042,7 +2020,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2068,7 +2046,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2078,7 +2056,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

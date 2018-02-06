@@ -11,22 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="CreateDimAndFactTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{FB900A82-7CC4-4121-AE8C-A592E05568C7}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{DEFAD2CD-2B92-4DF9-818E-828D2085BD01}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[localhost\DW_MDM.UsaceRiversDW]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{744CB9E3-4560-4701-9F1A-000317B5CBAC}"
-      DTS:ObjectName="localhost\DW_MDM.UsaceRiversDW">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=localhost\DW_MDM;Initial Catalog=UsaceRiversDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -42,7 +30,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{744CB9E3-4560-4701-9F1A-000317B5CBAC}"
+          SQLTask:Connection="{582F5992-4625-4264-BA5E-77A6D9FDA510}"
           SQLTask:SqlStatementSource="USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;&#xA;/****** Object:  Table [dbo].[DimHour]    Script Date: 2/5/2018 6:16:39 PM ******/&#xA;DROP TABLE if exists [dbo].[DimHour]&#xA;GO&#xA;&#xA;/****** Object:  Table [dbo].[DimHour]    Script Date: 2/5/2018 6:16:39 PM ******/&#xA;SET ANSI_NULLS ON&#xA;GO&#xA;&#xA;SET QUOTED_IDENTIFIER ON&#xA;GO&#xA;&#xA;CREATE TABLE [dbo].[DimHour](&#xA;&#x9;[HourId] [int] IDENTITY(1,1) NOT NULL,&#xA;&#x9;[HourMatch] [varchar](50) NULL,&#xA;&#x9;[Year] [smallint] NOT NULL,&#xA;&#x9;[MonthNumberOfYear] [tinyint] NOT NULL,&#xA;&#x9;[DayOfMonth] [tinyint] NOT NULL,&#xA;&#x9;[HourOfDay] [tinyint] NOT NULL,&#xA;&#x9;[DayNumberOfWeek] [tinyint] NOT NULL,&#xA;&#x9;[DayNameOfWeek] [nvarchar](10) NOT NULL,&#xA;&#x9;[DayNumberOfYear] [smallint] NOT NULL,&#xA;&#x9;[WeekNumberOfYear] [tinyint] NOT NULL,&#xA;&#x9;[MonthName] [nvarchar](10) NOT NULL,&#xA;&#x9;[CalendarQuarter] [tinyint] NOT NULL,&#xA;&#x9;[TimeCreated] [datetime] NULL,&#xA; CONSTRAINT [PK_DimTime] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[HourId] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[DimHour] ADD  CONSTRAINT [DF_DimTime_TimeCreated]  DEFAULT (getdate()) FOR [TimeCreated]&#xA;GO&#xA;&#xA;USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;&#xA;/****** Object:  Table [dbo].[DimLockChamber]    Script Date: 2/5/2018 6:17:05 PM ******/&#xA;DROP TABLE if exists [dbo].[DimLockChamber]&#xA;GO&#xA;&#xA;/****** Object:  Table [dbo].[DimLockChamber]    Script Date: 2/5/2018 6:17:05 PM ******/&#xA;SET ANSI_NULLS ON&#xA;GO&#xA;&#xA;SET QUOTED_IDENTIFIER ON&#xA;GO&#xA;&#xA;CREATE TABLE [dbo].[DimLockChamber](&#xA;&#x9;[LockChamberId] [int] IDENTITY(1,1) NOT NULL,&#xA;&#x9;[District] [varchar](50) NULL,&#xA;&#x9;[River] [varchar](50) NULL,&#xA;&#x9;[LockNumber] [tinyint] NULL,&#xA;&#x9;[LockName] [varchar](50) NULL,&#xA;&#x9;[ChamberNumber] [tinyint] NULL,&#xA;&#x9;[TimeCreated] [datetime] NOT NULL,&#xA; CONSTRAINT [PK_DimLock] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[LockChamberId] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[DimLockChamber] ADD  CONSTRAINT [DF_DimLockChamber_TimeCreated]  DEFAULT (getdate()) FOR [TimeCreated]&#xA;GO&#xA;&#xA;USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;/****** Object:  Table [dbo].[DimVessel]    Script Date: 2/5/2018 6:18:48 PM ******/&#xA;DROP TABLE if exists [dbo].[DimVessel]&#xA;GO&#xA;&#xA;/****** Object:  Table [dbo].[DimVessel]    Script Date: 2/5/2018 6:18:48 PM ******/&#xA;SET ANSI_NULLS ON&#xA;GO&#xA;&#xA;SET QUOTED_IDENTIFIER ON&#xA;GO&#xA;&#xA;CREATE TABLE [dbo].[DimVessel](&#xA;&#x9;[VesselId] [int] IDENTITY(1,1) NOT NULL,&#xA;&#x9;[VesselName] [varchar](50) NULL,&#xA;&#x9;[VesselNumber] [varchar](50) NULL,&#xA;&#x9;[VesselType] [varchar](50) NULL,&#xA;&#x9;[TimeCreated] [datetime] NULL,&#xA; CONSTRAINT [PK_DimVessel] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[VesselId] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[DimVessel] ADD  CONSTRAINT [DF_DimVessel_TimeCreated]  DEFAULT (getdate()) FOR [TimeCreated]&#xA;GO&#xA;&#xA;USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;&#xA;/****** Object:  Table [dbo].[FactLockage]    Script Date: 2/5/2018 6:20:02 PM ******/&#xA;DROP TABLE if exists [dbo].[FactLockage]&#xA;GO&#xA;&#xA;/****** Object:  Table [dbo].[FactLockage]    Script Date: 2/5/2018 6:20:02 PM ******/&#xA;SET ANSI_NULLS ON&#xA;GO&#xA;&#xA;SET QUOTED_IDENTIFIER ON&#xA;GO&#xA;&#xA;CREATE TABLE [dbo].[FactLockage](&#xA;&#x9;[PassageId] [int] IDENTITY(1,1) NOT NULL,&#xA;&#x9;[LockChamberId] [int] NOT NULL,&#xA;&#x9;[VesselId] [int] NOT NULL,&#xA;&#x9;[TimeId] [int] NOT NULL,&#xA;&#x9;[PassageArrival] [datetime] NOT NULL,&#xA;&#x9;[StartOfLockage] [datetime] NOT NULL,&#xA;&#x9;[EndOfLockage] [datetime] NOT NULL,&#xA;&#x9;[DelayMinutes] [int] NOT NULL,&#xA;&#x9;[ProcessingMinutes] [smallint] NOT NULL,&#xA;&#x9;[EmptyBarges] [tinyint] NOT NULL,&#xA;&#x9;[LoadedBarges] [tinyint] NULL,&#xA; CONSTRAINT [PK_FactLockage] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[PassageId] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[FactLockage]  WITH CHECK ADD  CONSTRAINT [FK_FactLockage_DimLock] FOREIGN KEY([LockChamberId])&#xA;REFERENCES [dbo].[DimLockChamber] ([LockChamberId])&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[FactLockage] CHECK CONSTRAINT [FK_FactLockage_DimLock]&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[FactLockage]  WITH CHECK ADD  CONSTRAINT [FK_FactLockage_DimTime] FOREIGN KEY([TimeId])&#xA;REFERENCES [dbo].[DimHour] ([HourId])&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[FactLockage] CHECK CONSTRAINT [FK_FactLockage_DimTime]&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[FactLockage]  WITH CHECK ADD  CONSTRAINT [FK_FactLockage_DimVessel] FOREIGN KEY([VesselId])&#xA;REFERENCES [dbo].[DimVessel] ([VesselId])&#xA;GO&#xA;&#xA;ALTER TABLE [dbo].[FactLockage] CHECK CONSTRAINT [FK_FactLockage_DimVessel]&#xA;GO&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
