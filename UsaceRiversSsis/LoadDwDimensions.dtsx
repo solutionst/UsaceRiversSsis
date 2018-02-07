@@ -11,23 +11,26 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="LoadDwDimensions"
   DTS:PackageType="5"
-  DTS:VersionBuild="56"
-  DTS:VersionGUID="{F640E910-36D2-478B-ACFA-31DC9D33D948}">
+  DTS:VersionBuild="61"
+  DTS:VersionGUID="{9F40AB16-B2B0-49BE-8D3A-DD575BB2E681}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{D64E1E95-C39A-4EA1-B044-2DCAA46DEA2C}"
-      DTS:ObjectName="DESKTOP-KC83MAS.UsaceRiversDW">
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="localhost_DW_MDM.UsaceRiversDW"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{7B972F59-B004-48F5-99DA-0473DF5D9734}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
       <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=DESKTOP-KC83MAS\DW_MDM;Initial Catalog=UsaceRiversDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+        <InnerObject />
       </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
   <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2" />
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Load DimHour from InputLockQueue"
@@ -40,9 +43,11 @@
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{D64E1E95-C39A-4EA1-B044-2DCAA46DEA2C}"
+          SQLTask:Connection="{582F5992-4625-4264-BA5E-77A6D9FDA510}"
           SQLTask:SqlStatementSource="USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;-- Create a temporary table for hour dimensions found in the raw input&#xA;DROP TABLE IF EXISTS #FoundDimHour;&#xA;CREATE TABLE #FoundDimHour (&#xA;&#x9;[HourId] [int] NULL,&#xA;&#x9;[HourMatch] [varchar](50) NULL,&#xA;&#x9;[Year] [smallint]  NULL,&#xA;&#x9;[MonthNumberOfYear] [tinyint]  NULL,&#xA;&#x9;[DayOfMonth] [tinyint]  NULL,&#xA;&#x9;[HourOfDay] [tinyint]  NULL,&#xA;&#x9;[DayNumberOfWeek] [tinyint]  NULL,&#xA;&#x9;[DayNameOfWeek] [nvarchar](10)  NULL,&#xA;&#x9;[DayNumberOfYear] [smallint]  NULL,&#xA;&#x9;[WeekNumberOfYear] [tinyint]  NULL,&#xA;&#x9;[MonthName] [nvarchar](10)  NULL,&#xA;&#x9;[CalendarQuarter] [tinyint]  NULL,&#xA;&#x9;[TimeCreated] [datetime] NULL)&#xA;  ON [PRIMARY];&#xA;  &#xA;-- Find the earliest and latest dates in the InputLockQueue table&#xA;DECLARE @MinDate DateTime;&#xA;DECLARE @MaxDate DateTime;&#xA;&#xA;SET @MinDate = (SELECT MIN (StartOfLockage) FROM InputLockQueue);&#xA;PRINT @MinDate;&#xA;SET @MaxDate = (SELECT MAX (StartOfLockage) FROM InputLockQueue);&#xA;PRINT @MaxDate;&#xA;&#xA;-- Loop for all dates&#xA;DECLARE @LoopDate DateTime;&#xA;SET @LoopDate = @MinDate;&#xA;&#xA;WHILE @LoopDate &lt;= @MaxDate&#xA;BEGIN&#xA;&#xA;INSERT INTO #FoundDimHour&#xA;([HourMatch]&#xA;           ,[Year]&#xA;           ,[MonthNumberOfYear]&#xA;           ,[DayOfMonth]&#xA;           ,[HourOfDay]&#xA;           ,[DayNumberOfWeek]&#xA;           ,[DayNameOfWeek]&#xA;           ,[DayNumberOfYear]&#xA;           ,[WeekNumberOfYear]&#xA;           ,[MonthName]&#xA;           ,[CalendarQuarter]&#xA;&#x9;&#x9;   )&#xA;VALUES (&#xA;CAST(DATEPART(&quot;yyyy&quot;, @LoopDate) AS char(4)) + '-' + &#xA;RIGHT('0' + CAST(DATEPART(&quot;mm&quot;, @LoopDate) AS varchar), 2) + '-' + &#xA;RIGHT('0' + CAST(DATEPART(&quot;dd&quot;, @LoopDate) AS varchar), 2) + ' ' + &#xA;RIGHT('0' + CAST(DATEPART(&quot;Hh&quot;, @LoopDate) AS varchar), 2)&#xA;,DATEPART(&quot;yyyy&quot;, @LoopDate)&#xA;,DATEPART(&quot;mm&quot;, @LoopDate)&#xA;,DATEPART(&quot;dd&quot;, @LoopDate)&#xA;,DATEPART(&quot;Hh&quot;, @LoopDate)&#xA;,DATEPART(&quot;dw&quot;, @LoopDate)&#xA;,DATENAME(&quot;dw&quot;, @LoopDate)&#xA;,DATENAME(&quot;dy&quot;, @LoopDate)&#xA;,DATEPART(wk, @LoopDate)&#xA;,DATENAME(m, @LoopDate)&#xA;,DATEPART(q, @LoopDate)&#xA;)&#xA;&#xA;SET @LoopDate = DATEADD(hour, 1, @LoopDate);&#xA;END;&#xA;&#xA;GO&#xA;&#xA;-- Update the temp table HourId values&#xA;UPDATE #FoundDimHour&#xA;SET &#xA;  HourId = h.HourId&#xA;FROM&#xA;  DimHour h RIGHT OUTER JOIN #FoundDimHour f on h.HourMatch = f.HourMatch&#xA;WHERE f.HourId is null;&#xA;&#xA;&#xA;-- Insert the missing dimensions&#xA;INSERT INTO [dbo].[DimHour]&#xA;           ([HourMatch]&#xA;           ,[Year]&#xA;           ,[MonthNumberOfYear]&#xA;           ,[DayOfMonth]&#xA;           ,[HourOfDay]&#xA;           ,[DayNumberOfWeek]&#xA;           ,[DayNameOfWeek]&#xA;           ,[DayNumberOfYear]&#xA;           ,[WeekNumberOfYear]&#xA;           ,[MonthName]&#xA;           ,[CalendarQuarter])&#xA;     SELECT &#xA;           f.HourMatch&#xA;           ,f.[Year]&#xA;           ,f.MonthNumberOfYear&#xA;           ,f.[DayOfMonth]&#xA;           ,f.HourOfDay&#xA;           ,f.DayNumberOfWeek&#xA;           ,f.DayNameOfWeek&#xA;           ,f.DayNumberOfYear&#xA;           ,f.WeekNumberOfYear&#xA;           ,f.[MonthName]&#xA;           ,f.CalendarQuarter&#xA;&#x9;FROM #FoundDimHour f&#xA;  LEFT OUTER JOIN DimHour h on h.HourMatch = f.HourMatch&#xA;  WHERE f.HourId is NULL&#xA;  ; &#xA;&#xA; -- SELECT &#xA;&#x9;--top 1000&#xA; --     f.*&#xA; -- FROM [dbo].[DimHour] h&#xA; -- RIGHT OUTER JOIN #FoundDimHour f on h.HourMatch = f.HourMatch&#xA; -- WHERE f.HourId is NULL&#xA;  ;  &#xA;&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -57,9 +62,11 @@
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{D64E1E95-C39A-4EA1-B044-2DCAA46DEA2C}"
+          SQLTask:Connection="{582F5992-4625-4264-BA5E-77A6D9FDA510}"
           SQLTask:SqlStatementSource="USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;-- Create a temporary table for lock chamber dimensions found in the raw input&#xA;DROP TABLE IF EXISTS #FoundDimLockChamber;&#xA;CREATE TABLE #FoundDimLockChamber (&#xA;&#x9;[LockChamberId] [int] NULL,&#xA;&#x9;[District] [varchar](50) NULL,&#xA;&#x9;[River] [varchar](50) NULL,&#xA;&#x9;[LockNumber] [tinyint] NULL,&#xA;&#x9;[LockName] [varchar](50) NULL,&#xA;&#x9;[ChamberNumber] [tinyint] NULL,&#xA;&#x9;[TimeCreated] [datetime]  NULL)&#xA;  ON [PRIMARY];&#xA;GO&#xA;INSERT into #FoundDimLockChamber&#xA;(District, River, LockNumber, LockName, ChamberNumber)&#xA;SELECT DISTINCT [District]&#xA;      ,[River]&#xA;      ,[LockNumber]&#xA;      ,[LockName]&#xA;      ,ChamberNumber&#xA;  FROM [UsaceRiversDW].[dbo].[InputLockQueue]&#xA;&#xA;-- Update the temp table HourId values&#xA;UPDATE #FoundDimLockChamber&#xA;SET &#xA;  LockChamberId = lc.LockChamberId&#xA;FROM&#xA;  DimLockChamber lc RIGHT OUTER JOIN #FoundDimLockChamber f &#xA;  on f.District = lc.District and f.River = lc.River&#xA;    AND f.LockNumber = lc.LockNumber AND f.LockName = lc.LockName&#xA;&#x9;AND f.ChamberNumber = lc.ChamberNumber&#xA;WHERE f.LockChamberId is null;&#xA;&#xA;--SELECT * from #FoundDimLockChamber where LockChamberId is not null;&#xA;&#xA;-- Insert the missing dimensions&#xA;USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;INSERT INTO [dbo].[DimLockChamber]&#xA;           ([District]&#xA;           ,[River]&#xA;           ,[LockNumber]&#xA;           ,[LockName]&#xA;           ,[ChamberNumber])&#xA;     SELECT&#xA;&#x9;&#x9;District&#xA;&#x9;&#x9;,River&#xA;&#x9;&#x9;,LockNumber&#xA;&#x9;&#x9;,LockName&#xA;&#x9;&#x9;,ChamberNumber&#xA;&#x9;FROM #FoundDimLockChamber&#xA;&#x9;WHERE LockChamberId is null;&#xA;&#xA;GO&#xA;&#xA;SELECT * FROM DimLockChamber;&#xA;&#xA;GO&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -74,9 +81,11 @@
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{D64E1E95-C39A-4EA1-B044-2DCAA46DEA2C}"
+          SQLTask:Connection="{582F5992-4625-4264-BA5E-77A6D9FDA510}"
           SQLTask:SqlStatementSource="USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;-- Create a temporary table for lock chamber dimensions found in the raw input&#xA;DROP TABLE IF EXISTS #FoundDimVessel;&#xA;CREATE TABLE #FoundDimVessel (&#xA;&#x9;[VesselId] [int]  NULL,&#xA;&#x9;[VesselName] [varchar](50) NULL,&#xA;&#x9;[VesselNumber] [varchar](50) NULL,&#xA;&#x9;[VesselType] [varchar](50) NULL,&#xA;&#x9;[TimeCreated] [datetime] NULL)&#xA;  ON [PRIMARY];&#xA;GO&#xA;&#xA;INSERT into #FoundDimVessel&#xA;(VesselName, VesselNumber)&#xA;SELECT DISTINCT &#xA;VesselName, VesselNumber&#xA;  FROM [UsaceRiversDW].[dbo].[InputLockQueue]&#xA;&#xA;--SELECT * from #FoundDimVessel;&#xA;&#xA;-- Update the temp table HourId values&#xA;UPDATE #FoundDimVessel&#xA;SET &#xA;  VesselId = v.vesselId&#xA;FROM&#xA;  DimVessel v RIGHT OUTER JOIN #FoundDimVessel f &#xA;  on f.VesselName = v.VesselName and f.VesselNumber = v.VesselNumber&#xA;WHERE f.VesselId is null;&#xA;&#xA;--SELECT * from #FoundDimVessel where LockChamberId is not null;&#xA;&#xA;-- Insert the missing dimensions&#xA;USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;INSERT INTO [dbo].DimVessel&#xA;           (VesselName, VesselNumber)&#xA;     SELECT&#xA;&#x9;&#x9;VesselName, VesselNumber&#xA;&#x9;FROM #FoundDimVessel&#xA;&#x9;WHERE VesselId is null;&#xA;&#xA;GO&#xA;&#xA;-- SELECT * FROM DimVessel;&#xA;&#xA;GO&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -114,41 +123,41 @@
         <NodeLayout
           Size="252.5,42"
           Id="Package\Load DimHour from InputLockQueue"
-          TopLeft="72.75,8.25" />
+          TopLeft="72.75,7.5" />
         <NodeLayout
           Size="261.5,53.5"
           Id="Package\Load DimLockChamber from InputLockQueue"
-          TopLeft="37,90.25" />
+          TopLeft="36.75,90.25" />
         <NodeLayout
           Size="246,56"
           Id="Package\Load DimVessel from InputLockQueue"
-          TopLeft="52.5,188.214285714286" />
+          TopLeft="52.5,188.464285714286" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="199,50.25">
+          TopLeft="199,49.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-31.25,40"
+              EndConnector="-31.5,40.75"
               Start="0,0"
-              End="-31.25,32.5">
+              End="-31.5,33.25">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16" />
+                    End="0,16.375" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16"
-                    Point2="0,20"
-                    Point3="-4,20" />
+                    Point1="0,16.375"
+                    Point2="0,20.375"
+                    Point3="-4,20.375" />
                   <mssgle:LineSegment
-                    End="-27.25,20" />
+                    End="-27.5,20.375" />
                   <mssgle:CubicBezierSegment
-                    Point1="-27.25,20"
-                    Point2="-31.25,20"
-                    Point3="-31.25,24" />
+                    Point1="-27.5,20.375"
+                    Point2="-31.5,20.375"
+                    Point3="-31.5,24.375" />
                   <mssgle:LineSegment
-                    End="-31.25,32.5" />
+                    End="-31.5,33.25" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -159,18 +168,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="171.625,143.75">
+          TopLeft="167.5,143.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,44.4642857142857"
+              EndConnector="8,44.714285714286"
               Start="0,0"
-              End="0,36.9642857142857">
+              End="8,37.214285714286">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.9642857142857" />
+                    End="0,18.357142857143" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.357142857143"
+                    Point2="0,22.357142857143"
+                    Point3="4,22.357142857143" />
+                  <mssgle:LineSegment
+                    End="4,22.357142857143" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4,22.357142857143"
+                    Point2="8,22.357142857143"
+                    Point3="8,26.357142857143" />
+                  <mssgle:LineSegment
+                    End="8,37.214285714286" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

@@ -11,21 +11,11 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="InputLockQueue"
   DTS:PackageType="5"
-  DTS:VersionBuild="57"
-  DTS:VersionGUID="{57EB1EDE-F105-44F8-8B7D-BBC19D4DEE2A}">
+  DTS:VersionBuild="66"
+  DTS:VersionGUID="{7F680D7F-6D96-4A3A-A9F5-7FECE6987679}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{D64E1E95-C39A-4EA1-B044-2DCAA46DEA2C}"
-      DTS:ObjectName="DESKTOP-KC83MAS.UsaceRiversDW">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=DESKTOP-KC83MAS\DW_MDM;Initial Catalog=UsaceRiversDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[FailedRowsConnMgr]"
       DTS:CreationName="FLATFILE"
@@ -363,7 +353,22 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="localhost_DW_MDM.UsaceRiversDW"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{87B6854D-84C0-4750-AE7A-3763037BE4F4}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
   <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2" />
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\ReadFlatFile"
@@ -375,6 +380,8 @@
       DTS:ObjectName="ReadFlatFile"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
           version="1">
@@ -2135,7 +2142,7 @@ namespace SC_beb488d5367545daba838fdb06a12168.Properties {
 		<msb:CodeName>SC_beb488d5367545daba838fdb06a12168</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>SC_beb488d5367545daba838fdb06a12168</msb:DisplayName>
-		<msb:ProjectId>{EF80FD2A-3B44-46A8-841B-D38A9ADE595C}</msb:ProjectId>
+		<msb:ProjectId>{26FABD8D-9A73-4FC0-BEEA-222044566274}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="SC_beb488d5367545daba838fdb06a12168.csproj"/>
@@ -2282,7 +2289,7 @@ namespace SC_beb488d5367545daba838fdb06a12168.Properties {
                     <arrayElement
                       dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDACZ8d1oAAAAAAAAAAOAAIiALATAAABYAAAAIAAAAAAAAJjQA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAJsieloAAAAAAAAAAOAAIiALATAAABYAAAAIAAAAAAAAJjQA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAANQzAABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAACcMgAAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2361,7 +2368,7 @@ IABjAGEAbgBuAG8AdAAgAGIAZQAgAHMAZQB0ACAAdABvACAARgBhAGwAcwBlAC4AIABBAHMAcwBp
 AGcAbgAgAGEAIAB2AGEAbAB1AGUAIAB0AG8AIAB0AGgAZQAgAGMAbwBsAHUAbQBuACAAaQBuAHMA
 dABlAGEAZAAuAAAPSQBuAHAAdQB0ACAAMAAAcVMAQwBfAGIAZQBiADQAOAA4AGQANQAzADYANwA1
 ADQANQBkAGEAYgBhADgAMwA4AGYAZABiADAANgBhADEAMgAxADYAOAAuAFAAcgBvAHAAZQByAHQA
-aQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAnKPZvDewUUqsX+BjjJfu/AAEIAEBCAMgAAEFIAEB
+aQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAtSR/k1LYh0iznrYP/ZW5QAAEIAEBCAMgAAEFIAEB
 EREEIAEBDgUgAQERWQQgABJpBCABDggJIAMBEj0dCBJBAwYSPQMGHQgEIAEICAQgAQIIBSACAQgc
 AyAAAgYgAgIOEXUFIAEdCAgGAAESeRF9BSAAEoCBByACAQ4SgIEIt3pcVhk04IkIiYRdzYCAzJED
 BhIUAwYSGAMGEkUDBhJRAwYSVQMGEiAFIAEBEgwDIAAIBCABAQIJIAQBCA4SPRJBBSABARJFBAAA
@@ -2374,7 +2381,7 @@ dXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQ
 dWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNvdXJjZXMuUnVudGltZVJl
 c291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAAAAAAAAAAAAAAAAAAACAAAAHAEAALgyAAC4
 FAAAUlNEUwAAAAAAAAAAAAAAAAAAAAABAAAAQzpcVXNlcnNcYmhhcnBlclxBcHBEYXRhXExvY2Fs
-XFRlbXBcdnN0YVxjMWI0NTUyM2FiZmQ0ZGE1YjdkMWNkMmEyMWJhMzgyN1xvYmpcUmVsZWFzZVxT
+XFRlbXBcdnN0YVwxOGUyNjI5ZmI2ZWM0YWY3YTE0NzgxMjA2ZjY0OWIxMFxvYmpcUmVsZWFzZVxT
 Q19iZWI0ODhkNTM2NzU0NWRhYmE4MzhmZGIwNmExMjE2OC5wZGIAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2560,8 +2567,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
               <connections>
                 <connection
                   refId="Package\ReadFlatFile\UsaceRiversDWDest.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-KC83MAS.UsaceRiversDW]"
+                  connectionManagerID="{582F5992-4625-4264-BA5E-77A6D9FDA510}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost_DW_MDM.UsaceRiversDW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2843,10 +2850,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{D64E1E95-C39A-4EA1-B044-2DCAA46DEA2C}"
-          SQLTask:SqlStatementSource="USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;/****** Object:  Table [dbo].[InputLockQueue]    Script Date: 2/4/2018 4:20:15 PM ******/&#xA;DROP TABLE IF EXISTS [dbo].[InputLockQueue]&#xA;GO&#xA;&#xA;/****** Object:  Table [dbo].[InputLockQueue]    Script Date: 2/4/2018 4:20:15 PM ******/&#xA;SET ANSI_NULLS ON&#xA;GO&#xA;&#xA;SET QUOTED_IDENTIFIER ON&#xA;GO&#xA;&#xA;CREATE TABLE [dbo].[InputLockQueue](&#xA;&#x9;[Id] [int] IDENTITY(1,1) NOT NULL,&#xA;&#x9;[UniqueMatch] [varchar](250) NULL,&#xA;&#x9;[District] [varchar](50) NULL,&#xA;&#x9;[River] [varchar](50) NULL,&#xA;&#x9;[LockNumber] [tinyint] NULL,&#xA;&#x9;[LockName] [varchar](50) NULL,&#xA;&#x9;[ChamberNumber] [tinyint] NULL,&#xA;&#x9;[VesselNumber] [varchar](50) NULL,&#xA;&#x9;[VesselName] [varchar](50) NULL,&#xA;&#x9;[Direction] [varchar](50) NULL,&#xA;&#x9;[Arrival] [datetime] NULL,&#xA;&#x9;[StartOfLockage] [datetime] NULL,&#xA;&#x9;[EndOfLockage] [datetime] NULL,&#xA;&#x9;[DelayMinutes] [int] NULL,&#xA;&#x9;[ProcessingMinutes] [int] NULL,&#xA;&#x9;[EmptyBarges] [int] NULL,&#xA;&#x9;[LoadedBarges] [int] NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{582F5992-4625-4264-BA5E-77A6D9FDA510}"
+          SQLTask:SqlStatementSource="USE [UsaceRiversDW]&#xA;GO&#xA;&#xA;/****** Object:  Table [dbo].[InputLockQueue]    Script Date: 2/4/2018 4:20:15 PM ******/&#xA;DROP TABLE IF EXISTS [dbo].[InputLockQueue]&#xA;GO&#xA;&#xA;/****** Object:  Table [dbo].[InputLockQueue]    Script Date: 2/4/2018 4:20:15 PM ******/&#xA;SET ANSI_NULLS ON&#xA;GO&#xA;&#xA;SET QUOTED_IDENTIFIER ON&#xA;GO&#xA;&#xA;CREATE TABLE [dbo].[InputLockQueue](&#xA;&#x9;[Id] [int] IDENTITY(1,1) NOT NULL,&#xA;&#x9;[UniqueMatch] [varchar](250) NULL,&#xA;&#x9;[District] [varchar](50) NULL,&#xA;&#x9;[River] [varchar](50) NULL,&#xA;&#x9;[LockNumber] [tinyint] NULL,&#xA;&#x9;[LockName] [varchar](50) NULL,&#xA;&#x9;[ChamberNumber] [tinyint] NULL,&#xA;&#x9;[VesselNumber] [varchar](50) NULL,&#xA;&#x9;[VesselName] [varchar](50) NULL,&#xA;&#x9;[Direction] [varchar](50) NULL,&#xA;&#x9;[Arrival] [datetime] NULL,&#xA;&#x9;[StartOfLockage] [datetime] NULL,&#xA;&#x9;[EndOfLockage] [datetime] NULL,&#xA;&#x9;[DelayMinutes] [int] NULL,&#xA;&#x9;[ProcessingMinutes] [int] NULL,&#xA;&#x9;[EmptyBarges] [int] NULL,&#xA;&#x9;[LoadedBarges] [int] NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -2875,37 +2885,37 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
         <NodeLayout
           Size="136,42"
           Id="Package\ReadFlatFile"
-          TopLeft="192,115.5" />
+          TopLeft="192,115.75" />
         <NodeLayout
           Size="189,44"
           Id="Package\TruncateRawTable"
-          TopLeft="19.75,19.75" />
+          TopLeft="20,20.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="114.25,63.75">
+          TopLeft="114.5,64.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="145.75,51.75"
+              EndConnector="145.5,51.25"
               Start="0,0"
-              End="145.75,44.25">
+              End="145.5,43.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.875" />
+                    End="0,21.625" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,21.875"
-                    Point2="0,25.875"
-                    Point3="4,25.875" />
+                    Point1="0,21.625"
+                    Point2="0,25.625"
+                    Point3="4,25.625" />
                   <mssgle:LineSegment
-                    End="141.75,25.875" />
+                    End="141.5,25.625" />
                   <mssgle:CubicBezierSegment
-                    Point1="141.75,25.875"
-                    Point2="145.75,25.875"
-                    Point3="145.75,29.875" />
+                    Point1="141.5,25.625"
+                    Point2="145.5,25.625"
+                    Point3="145.5,29.625" />
                   <mssgle:LineSegment
-                    End="145.75,44.25" />
+                    End="145.5,43.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2925,7 +2935,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
         <NodeLayout
           Size="151,42"
           Id="Package\ReadFlatFile\Flat File Source"
-          TopLeft="80.6428571428571,25.6428571428571" />
+          TopLeft="80.8928571428571,25.8928571428571" />
         <NodeLayout
           Size="163,42"
           Id="Package\ReadFlatFile\Get Error Info"
@@ -2937,7 +2947,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
         <NodeLayout
           Size="173.5,42"
           Id="Package\ReadFlatFile\UsaceRiversDWDest"
-          TopLeft="73.714285714286,188.428571428571" />
+          TopLeft="73.964285714286,188.178571428571" />
         <NodeLayout
           Size="172,42"
           Id="Package\ReadFlatFile\FailedRows"
@@ -2965,19 +2975,43 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\ReadFlatFile.Paths[Flat File Source Output]"
-          TopLeft="159.696428571429,67.6428571428571">
+          Id="Package\ReadFlatFile.Paths[OLE DB Destination Error Output]"
+          TopLeft="247.464285714286,210.089285714285">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,31.1071428571429"
+              EndConnector="93.535714285714,0"
               Start="0,0"
-              End="0,23.6071428571429">
+              End="86.035714285714,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.6071428571429" />
+                    End="86.035714285714,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-30.191049107143,5,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ReadFlatFile.Paths[Flat File Source Output]"
+          TopLeft="159.821428571429,67.8928571428571">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.8571428571429"
+              Start="0,0"
+              End="0,23.3571428571429">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.3571428571429" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2988,48 +3022,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ReadFlatFile.Paths[Derived Column Output]"
-          TopLeft="161.857142857143,140.75">
+          TopLeft="161.982142857143,140.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,47.678571428571"
+              EndConnector="0,47.428571428571"
               Start="0,0"
-              End="0,40.178571428571">
+              End="0,39.928571428571">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.178571428571" />
+                    End="0,39.928571428571" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ReadFlatFile.Paths[OLE DB Destination Error Output]"
-          TopLeft="247.214285714286,210.214285714285">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="93.785714285714,0"
-              Start="0,0"
-              End="86.285714285714,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="86.285714285714,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-30.066049107143,5,146.4178125,11.43359375"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

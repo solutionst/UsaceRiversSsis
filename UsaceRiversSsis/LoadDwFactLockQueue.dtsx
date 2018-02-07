@@ -11,13 +11,13 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="LoadDwFactLockQueue"
   DTS:PackageType="5"
-  DTS:VersionBuild="87"
-  DTS:VersionGUID="{1B95FC29-D0DA-4F05-A5CB-D76D37AB5EC5}">
+  DTS:VersionBuild="90"
+  DTS:VersionGUID="{ACA10C45-9449-4C3C-8D47-55520360B12B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:LogProviders>
     <DTS:LogProvider
-      DTS:ConfigString="{6C6589AA-DC75-437E-AB0F-E39E3B7AA71A}"
+      DTS:ConfigString="localhost_DW_MDM.UsaceRiversDW"
       DTS:CreationName="Microsoft.LogProviderSQLServer"
       DTS:Description="Writes log entries for events to a SQL Server database"
       DTS:DTSID="{20E767E5-326D-4A7A-881F-5D3CCF7CFDFB}"
@@ -1829,7 +1829,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
         <NodeLayout
           Size="153.5,42"
           Id="Package\Load Fact Table"
-          TopLeft="50.5714285714285,69.607142857143" />
+          TopLeft="50.8214285714285,69.857142857143" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1857,14 +1857,14 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
         <NodeLayout
           Size="160,42"
           Id="Package\Load Fact Table\InputLockQueue"
-          TopLeft="55.25,21.5" />
+          TopLeft="55,21.5" />
         <NodeLayout
           Size="141,42"
           Id="Package\Load Fact Table\Add Columns"
           TopLeft="63,104.25" />
         <EdgeLayout
           Id="Package\Load Fact Table.Paths[OLE DB Source Output]"
-          TopLeft="134.375,63.5">
+          TopLeft="134.25,63.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1987,7 +1987,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1997,7 +1997,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2010,7 +2010,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2020,7 +2020,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2046,7 +2046,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2056,7 +2056,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
