@@ -3,11 +3,12 @@
   <Name>Usace Rivers DW</Name>
   <CreatedTimestamp>0001-01-01T05:00:00Z</CreatedTimestamp>
   <LastSchemaUpdate>0001-01-01T05:00:00Z</LastSchemaUpdate>
-  <ConnectionString>Provider=SQLNCLI11.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=UsaceRiversDW</ConnectionString>
+  <ConnectionString>Provider=SQLNCLI11.1;Data Source=localhost\DW_MDM;Integrated Security=SSPI;Initial Catalog=UsaceRiversDW</ConnectionString>
   <ConnectionStringSecurity>Unchanged</ConnectionStringSecurity>
   <ImpersonationInfo>
-    <ImpersonationMode>ImpersonateCurrentUser</ImpersonationMode>
-    <ImpersonationInfoSecurity>Unchanged</ImpersonationInfoSecurity>
+    <ImpersonationMode>ImpersonateAccount</ImpersonationMode>
+    <Account>bharper</Account>
+    <ImpersonationInfoSecurity>PasswordRemoved</ImpersonationInfoSecurity>
   </ImpersonationInfo>
   <Timeout>PT0S</Timeout>
 </DataSource>

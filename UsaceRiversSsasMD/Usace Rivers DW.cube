@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="16" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-5852" scrolltop="-600" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="19923" y="7752" backcolor="16777215" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="16" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-5852" scrolltop="6388" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="22132" y="11708" backcolor="16777215" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="0100000090019e330100065461686f6d61" />
             </font>
@@ -52,7 +52,7 @@
             </layoutobject>
             <shape groupshapeid="0" groupnode="0" />
           </ddscontrol>
-          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" left="284" top="14364" logicalid="11" controlid="4" masterid="0" hint1="0" hint2="0" width="3122" height="3188" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DimLockChamber" left="284" top="14364" logicalid="11" controlid="4" masterid="0" hint1="0" hint2="0" width="3122" height="3188" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
               <ddsxmlobjectstreaminitwrapper binary="000c0000320c0000740c0000" />
             </control>
@@ -138,7 +138,7 @@
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
-      <Value>-600</Value>
+      <Value>6388</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
@@ -156,16 +156,6 @@
   <LastProcessed>0001-01-01T05:00:00Z</LastProcessed>
   <State>Unprocessed</State>
   <Dimensions>
-    <Dimension dwd:design-time-name="f0738300-9ece-43a6-984d-cb12532ecd97">
-      <ID>Dim Lock Chamber</ID>
-      <Name>Dim Lock Chamber</Name>
-      <DimensionID>Dim Lock Chamber</DimensionID>
-      <Attributes>
-        <Attribute dwd:design-time-name="af432e71-7dd6-4961-8618-172530536772">
-          <AttributeID>Lock Chamber Id</AttributeID>
-        </Attribute>
-      </Attributes>
-    </Dimension>
     <Dimension dwd:design-time-name="08147d95-dffa-4efe-9240-b3a042e28668">
       <ID>Dim Vessel</ID>
       <Name>Dim Vessel</Name>
@@ -174,17 +164,85 @@
         <Attribute dwd:design-time-name="df9083f6-e199-495b-bf1c-40e478278766">
           <AttributeID>Vessel Id</AttributeID>
         </Attribute>
+        <Attribute dwd:design-time-name="b2e4ac2b-d562-4339-a9c2-3dab6d212d60">
+          <AttributeID>Vessel Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1a6df9e5-35c3-4045-aa69-ddbe63c535f6">
+          <AttributeID>Vessel Number</AttributeID>
+        </Attribute>
       </Attributes>
     </Dimension>
-    <Dimension dwd:design-time-name="77fc0d36-c9c5-484f-9614-503498a5168d">
+    <Dimension dwd:design-time-name="9f0127cd-4a64-45c4-8c0a-048f1aab6270">
       <ID>Dim Hour</ID>
       <Name>Dim Hour</Name>
       <DimensionID>Dim Hour</DimensionID>
       <Attributes>
-        <Attribute dwd:design-time-name="93190cef-7514-4b5e-98c5-bed88a6b4c59">
+        <Attribute dwd:design-time-name="1e615625-fcaa-4b05-b0f0-ec9dc44211e7">
           <AttributeID>Hour Id</AttributeID>
         </Attribute>
+        <Attribute dwd:design-time-name="15042885-653d-45d2-870c-94e518f2a691">
+          <AttributeID>Year</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7e49cb94-c9df-438e-8b6f-2633856a0adb">
+          <AttributeID>Month Number Of Year</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="95bd5d48-a795-4020-97da-878c30128cbc">
+          <AttributeID>Day Of Month</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a7960caa-4cad-4acb-94e2-3d7c58cbe5b5">
+          <AttributeID>Hour Of Day</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="85742470-0f99-4a68-8fe1-6b96bb593f75">
+          <AttributeID>Day Number Of Week</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5e3b3b48-b894-4019-8459-5a20a2af8fbb">
+          <AttributeID>Day Name Of Week</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="655c8c81-34be-43a8-96b5-20ee8dff28b6">
+          <AttributeID>Day Number Of Year</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8641976c-7a8a-46c4-a027-d5da6c7c3ec0">
+          <AttributeID>Week Number Of Year</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fa386e95-c8aa-4446-a002-22797ea627ce">
+          <AttributeID>Month Name</AttributeID>
+        </Attribute>
       </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="5b74e0a0-c8f0-4195-a1dc-88876ebea162">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="e8be1a09-08fb-4c3a-ad75-422f6a7b7e49">
+      <ID>Dim Lock Chamber</ID>
+      <Name>Dim Lock Chamber</Name>
+      <DimensionID>Dim Lock Chamber</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="5bb46dbc-b5eb-49eb-922f-74a7b0c5b8d7">
+          <AttributeID>Lock Chamber Id</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="793375e1-2654-459c-afd2-8e41ac48c179">
+          <AttributeID>District</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1f513e90-7337-4c89-a328-6d678442bf3f">
+          <AttributeID>River</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="edfbbe8e-574a-40c9-a811-a1f748f276a7">
+          <AttributeID>Lock Number</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a187259a-e8d8-4b9b-868a-dbc9afe5f3b2">
+          <AttributeID>Lock Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3ab985a6-47fb-4aa7-be3f-1f770b4f1e9f">
+          <AttributeID>Chamber Number</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="69241cf2-96fc-46d9-ad16-194fee1c5011">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
     </Dimension>
   </Dimensions>
   <MeasureGroups>
@@ -258,42 +316,6 @@
       <StorageMode>Molap</StorageMode>
       <ProcessingMode>Regular</ProcessingMode>
       <Dimensions>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="ea72f627-d4b1-4da1-a8ed-eae7971dcd53">
-          <CubeDimensionID>Dim Hour</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="d74a0100-4082-41e7-b81b-56f69249ca5a">
-              <AttributeID>Hour Id</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="478233b9-a340-4132-9e9c-e788aab5a0be">
-                  <DataType>Integer</DataType>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="8dea924c-56b0-4513-989d-4ddab2e21c09">
-                    <TableID>dbo_FactLockage</TableID>
-                    <ColumnID>TimeId</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="0e4b6830-d284-4cf6-83cb-c1b69eb518c0">
-          <CubeDimensionID>Dim Lock Chamber</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="c2b57cd4-197e-40d6-8307-20f7cad07e49">
-              <AttributeID>Lock Chamber Id</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="ec147c6b-734a-4168-a4f0-8cee4b9af5ea">
-                  <DataType>Integer</DataType>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="b5596acd-24e0-4483-8d94-734c9831b917">
-                    <TableID>dbo_FactLockage</TableID>
-                    <ColumnID>LockChamberId</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
         <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="9212661f-cd26-4e56-b545-a9d3baeea392">
           <CubeDimensionID>Dim Vessel</CubeDimensionID>
           <Attributes>
@@ -305,6 +327,42 @@
                   <Source xsi:type="ColumnBinding" dwd:design-time-name="162172f3-affd-4411-b348-e7dc0ed03b75">
                     <TableID>dbo_FactLockage</TableID>
                     <ColumnID>VesselId</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="35c006e0-d735-4375-a533-27ac7d0af5ce">
+          <CubeDimensionID>Dim Hour</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="4008f726-2ee9-4525-8897-91c5bab87bbb">
+              <AttributeID>Hour Id</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="5dc5f26a-2c3b-4fc1-addd-4e3ccadc2e33">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="08f4f13e-5b6b-4cff-a109-b7031fb4b4cc">
+                    <TableID>dbo_FactLockage</TableID>
+                    <ColumnID>TimeId</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="66503835-490b-421d-9b0e-f1ecf3e0bc3a">
+          <CubeDimensionID>Dim Lock Chamber</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="8bfb36cf-1e0e-4fdd-989a-5fddbb5c93ba">
+              <AttributeID>Lock Chamber Id</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="9758a55f-6348-44e1-85d3-424eeb2755ff">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="a49a9584-3688-47d2-8d2a-bcfc127788ea">
+                    <TableID>dbo_FactLockage</TableID>
+                    <ColumnID>LockChamberId</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>

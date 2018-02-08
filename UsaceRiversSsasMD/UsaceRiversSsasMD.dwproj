@@ -20,16 +20,16 @@
   </Cubes>
   <Dimensions>
     <ProjectItem>
+      <Name>Dim Vessel.dim</Name>
+      <FullPath>Dim Vessel.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>Dim Hour.dim</Name>
       <FullPath>Dim Hour.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Dim Lock Chamber.dim</Name>
       <FullPath>Dim Lock Chamber.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Dim Vessel.dim</Name>
-      <FullPath>Dim Vessel.dim</FullPath>
     </ProjectItem>
   </Dimensions>
   <DataSources>
@@ -52,7 +52,7 @@
           <ConfigurationSetting>
             <Id>Usace Rivers DW</Id>
             <Name>Usace Rivers DW</Name>
-            <Value xsi:type="xsd:string">Provider=SQLNCLI11.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=UsaceRiversDW</Value>
+            <Value xsi:type="xsd:string">Provider=SQLNCLI11.1;Data Source=localhost\DW_MDM;Integrated Security=SSPI;Initial Catalog=UsaceRiversDW</Value>
           </ConfigurationSetting>
         </ConnectionMappings>
         <ConnectionProviderMappings>

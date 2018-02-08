@@ -1,4 +1,4 @@
-﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="e01ac4c5-e35f-4207-a56f-75c4db4f9f13" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="28aee390-7080-4b8a-91f5-5ef0248b060f" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Dim Lock Chamber</ID>
   <Name>Dim Lock Chamber</Name>
   <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
@@ -6,6 +6,32 @@
   <Annotations>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2507" scrolltop="-4260" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="8176" y="11708" backcolor="16777215" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="0100000090019e330100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DimLockChamber" left="20" top="0" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="3122" height="3188" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000c0000320c0000740c0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_DimLockChamber" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
@@ -21,15 +47,15 @@
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
-      <Value>0</Value>
+      <Value>-2507</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
-      <Value>0</Value>
+      <Value>-4260</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
-      <Value>0</Value>
+      <Value>20</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
@@ -42,26 +68,131 @@
   </Annotations>
   <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
   <State>Unprocessed</State>
-  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="015b9eb1-16fd-4a68-b439-c649a9d28b60">
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="3c2449ba-58f9-4ddc-8e66-01aef6c00026">
     <DataSourceViewID>Usace Rivers DW</DataSourceViewID>
   </Source>
-  <ErrorConfiguration dwd:design-time-name="07be2421-3ad7-4b2c-b3f2-11e28bdf415a">
+  <ErrorConfiguration dwd:design-time-name="2597b97e-958a-4b12-a974-c9cfe1be6cec">
     <KeyNotFound>ReportAndStop</KeyNotFound>
     <KeyDuplicate>ReportAndStop</KeyDuplicate>
     <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
   </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Attributes>
-    <Attribute dwd:design-time-name="fc22baff-0600-44f6-b017-c0269471e718">
+    <Attribute dwd:design-time-name="a2e40593-79df-4286-bc2e-614ba149028c">
       <ID>Lock Chamber Id</ID>
       <Name>Lock Chamber Id</Name>
       <Usage>Key</Usage>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="0e09dc0b-7a4b-4994-90a3-ec0b3da123ba">
+        <KeyColumn dwd:design-time-name="baa5eb35-2ae5-4695-ba92-c59b477f18b8">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="f79f86c2-eca5-463f-82bc-d98fa0d1f565">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="83ba9b82-6087-474b-8646-31bc63f46c3a">
             <TableID>dbo_DimLockChamber</TableID>
             <ColumnID>LockChamberId</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="c2b585db-7c8c-42bb-9422-0af622eda9a8">
+          <AttributeID>District</AttributeID>
+          <Name>District</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="5fe4e27b-6ede-4eae-b082-a7f603bbb9a2">
+          <AttributeID>River</AttributeID>
+          <Name>River</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e35f7ba3-734f-449a-b793-e102db6f49c9">
+          <AttributeID>Lock Number</AttributeID>
+          <Name>Lock Number</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9dce3e6a-21ab-4c5b-bf27-2d46966b0532">
+          <AttributeID>Lock Name</AttributeID>
+          <Name>Lock Name</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="93cd4166-d18b-47e3-91e8-3fc1ae16ea3b">
+          <AttributeID>Chamber Number</AttributeID>
+          <Name>Chamber Number</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e8439391-fdc4-4000-a9cd-d3e4098c1847">
+      <ID>District</ID>
+      <Name>District</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="86832fa5-4caf-4ba7-bad6-f6cc5b8d853e">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="668dda86-a1f6-4d31-acb2-7010c8fbd83d">
+            <TableID>dbo_DimLockChamber</TableID>
+            <ColumnID>District</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="99349cbd-1df6-4a57-8232-716ad6502e49">
+      <ID>River</ID>
+      <Name>River</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="76c5d60f-067c-4439-a3d3-9fb283779b89">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b36c4598-d0f9-4532-ae59-1a8d821552ad">
+            <TableID>dbo_DimLockChamber</TableID>
+            <ColumnID>River</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f445fba3-04f3-462e-809a-3035f81b5fb6">
+      <ID>Lock Number</ID>
+      <Name>Lock Number</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7df21c89-067b-4a21-881f-90c79f5a73f3">
+          <DataType>UnsignedTinyInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2d2b56b6-72b1-4f37-a1ca-52f7a503ba75">
+            <TableID>dbo_DimLockChamber</TableID>
+            <ColumnID>LockNumber</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c6abb8b7-a46d-411f-9fd4-126d8410d938">
+      <ID>Lock Name</ID>
+      <Name>Lock Name</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d4046171-d449-4fbe-9081-ddd0894ca94e">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1df786d3-a7a4-4d16-bebd-a4d5152ee532">
+            <TableID>dbo_DimLockChamber</TableID>
+            <ColumnID>LockName</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="fbe42bee-2f80-421e-8e8f-11f8db186c20">
+      <ID>Chamber Number</ID>
+      <Name>Chamber Number</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c2d42aa6-3633-4135-9960-c287d285ddb3">
+          <DataType>UnsignedTinyInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="45190def-c630-453b-9cb9-ec79dfa96641">
+            <TableID>dbo_DimLockChamber</TableID>
+            <ColumnID>ChamberNumber</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
@@ -70,5 +201,28 @@
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
   </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="c30d6862-cefe-4ce2-b44a-e0e2c6d4e6f5">
+      <ID>Hierarchy</ID>
+      <Name>Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="60fa0980-dbc7-4d22-b1f5-1b0f33a86d08">
+          <ID>River</ID>
+          <Name>River</Name>
+          <SourceAttributeID>River</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="d9f398c6-2e2b-49cf-ac73-f6a8624576ea">
+          <ID>Lock Number</ID>
+          <Name>Lock Number</Name>
+          <SourceAttributeID>Lock Number</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="bd3293a9-5fbf-4641-879f-3a1097638075">
+          <ID>Chamber Number</ID>
+          <Name>Chamber Number</Name>
+          <SourceAttributeID>Chamber Number</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
   <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
 </Dimension>
