@@ -207,6 +207,9 @@
         <Attribute dwd:design-time-name="fa386e95-c8aa-4446-a002-22797ea627ce">
           <AttributeID>Month Name</AttributeID>
         </Attribute>
+        <Attribute dwd:design-time-name="456d7cfa-fd34-4f51-a231-56e17e07f6cd">
+          <AttributeID>Time To Hour</AttributeID>
+        </Attribute>
       </Attributes>
       <Hierarchies>
         <Hierarchy dwd:design-time-name="5b74e0a0-c8f0-4195-a1dc-88876ebea162">
