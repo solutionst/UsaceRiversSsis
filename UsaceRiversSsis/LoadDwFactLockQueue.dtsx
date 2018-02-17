@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="LoadDwFactLockQueue"
   DTS:PackageType="5"
-  DTS:VersionBuild="90"
-  DTS:VersionGUID="{ACA10C45-9449-4C3C-8D47-55520360B12B}">
+  DTS:VersionBuild="92"
+  DTS:VersionGUID="{829B22A0-5143-4308-AC8D-B2D9F796C4C7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:LogProviders>
@@ -554,6 +554,28 @@
                           name="FriendlyExpression">0</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fact Table\Add Columns.Outputs[Derived Column Output].Columns[DirectionId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Fact Table\Add Columns.Outputs[Derived Column Output].Columns[DirectionId]"
+                      name="DirectionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -1013,6 +1035,169 @@
                       dataType="i4"
                       lineageId="Package\Load Fact Table\InputLockQueue.Outputs[OLE DB Source Error Output].Columns[LoadedBarges]"
                       name="LoadedBarges" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Fact Table\Lookup DimDirection"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup DimDirection"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimDirection]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimDirection]) [refTable]
+where [refTable].[FlagDirection] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DirectionId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FlagDirection" dataType="DT_STR" length="1" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TimeCreated" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load Fact Table\InputLockQueue.Outputs[OLE DB Source Output].Columns[Direction]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Fact Table\Lookup DimDirection.Connections[OleDbConnection]"
+                  connectionManagerID="{582F5992-4625-4264-BA5E-77A6D9FDA510}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost_DW_MDM.UsaceRiversDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Fact Table\Lookup DimDirection.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fact Table\Lookup DimDirection.Inputs[Lookup Input].Columns[Direction]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Direction"
+                      lineageId="Package\Load Fact Table\InputLockQueue.Outputs[OLE DB Source Output].Columns[Direction]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">FlagDirection</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fact Table\Lookup DimDirection.Inputs[Lookup Input].Columns[DirectionId]"
+                      cachedDataType="i4"
+                      cachedName="DirectionId"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load Fact Table\Add Columns.Outputs[Derived Column Output].Columns[DirectionId]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn" />
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DirectionId</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fact Table\Lookup DimDirection.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load Fact Table\Lookup DimDirection.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Fact Table\Lookup DimDirection.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load Fact Table\Lookup DimDirection.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Fact Table\Lookup DimDirection.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load Fact Table\Lookup DimDirection.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact Table\Lookup DimDirection.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact Table\Lookup DimDirection.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fact Table\Lookup DimDirection.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact Table\Lookup DimDirection.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -1707,6 +1892,12 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
                       cachedName="Arrival"
                       externalMetadataColumnId="Package\Load Fact Table\Write FactLockage.Inputs[OLE DB Destination Input].ExternalColumns[PassageArrival]"
                       lineageId="Package\Load Fact Table\InputLockQueue.Outputs[OLE DB Source Output].Columns[Arrival]" />
+                    <inputColumn
+                      refId="Package\Load Fact Table\Write FactLockage.Inputs[OLE DB Destination Input].Columns[DirectionId]"
+                      cachedDataType="i4"
+                      cachedName="DirectionId"
+                      externalMetadataColumnId="Package\Load Fact Table\Write FactLockage.Inputs[OLE DB Destination Input].ExternalColumns[DirectionId]"
+                      lineageId="Package\Load Fact Table\Add Columns.Outputs[Derived Column Output].Columns[DirectionId]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1754,6 +1945,10 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
                       refId="Package\Load Fact Table\Write FactLockage.Inputs[OLE DB Destination Input].ExternalColumns[LoadedBarges]"
                       dataType="ui1"
                       name="LoadedBarges" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Table\Write FactLockage.Inputs[OLE DB Destination Input].ExternalColumns[DirectionId]"
+                      dataType="i4"
+                      name="DirectionId" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1801,9 +1996,14 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
               startId="Package\Load Fact Table\Lookup DimLockChamber.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load Fact Table.Paths[Lookup Match Output2]"
-              endId="Package\Load Fact Table\Write FactLockage.Inputs[OLE DB Destination Input]"
+              endId="Package\Load Fact Table\Lookup DimDirection.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Load Fact Table\Lookup DimVessel.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load Fact Table.Paths[Lookup Match Output3]"
+              endId="Package\Load Fact Table\Write FactLockage.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\Load Fact Table\Lookup DimDirection.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load Fact Table.Paths[OLE DB Source Output]"
               endId="Package\Load Fact Table\Add Columns.Inputs[Derived Column Input]"
@@ -1849,7 +2049,7 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
         <NodeLayout
           Size="165.5,42"
           Id="Package\Load Fact Table\Write FactLockage"
-          TopLeft="48.7142857142857,412.285714285714" />
+          TopLeft="53.4642857142857,510.535714285714" />
         <NodeLayout
           Size="158,42"
           Id="Package\Load Fact Table\Lookup DimHour"
@@ -1882,30 +2082,6 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Fact Table.Paths[Lookup Match Output2]"
-          TopLeft="131.214285714286,375.071428571429">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,37.214285714285"
-              Start="0,0"
-              End="0,29.714285714285">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,29.714285714285" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,9.05245535714249,96.3827734375,11.609375"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -1976,6 +2152,58 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Load Fact Table\Lookup DimDirection"
+          TopLeft="44.75,408.5" />
+        <EdgeLayout
+          Id="Package\Load Fact Table.Paths[Lookup Match Output2]"
+          TopLeft="132.107142857143,375.071428571429">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.428571428571"
+              Start="0,0"
+              End="0,25.928571428571">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.928571428571" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,7.1595982142855,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Table.Paths[Lookup Match Output3]"
+          TopLeft="134.732142857143,450.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.035714285714"
+              Start="0,0"
+              End="0,52.535714285714">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.535714285714" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.463169642857,96.3827734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -2073,6 +2301,29 @@ where [refTable].[VesselNumber] = ? and [refTable].[VesselName] = ?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Table\Lookup DimDirection">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimDirection]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
