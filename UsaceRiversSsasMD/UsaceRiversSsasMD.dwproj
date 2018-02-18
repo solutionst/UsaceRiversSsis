@@ -31,6 +31,10 @@
       <Name>Dim Lock Chamber.dim</Name>
       <FullPath>Dim Lock Chamber.dim</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Direction.dim</Name>
+      <FullPath>Dim Direction.dim</FullPath>
+    </ProjectItem>
   </Dimensions>
   <DataSources>
     <ProjectItem>

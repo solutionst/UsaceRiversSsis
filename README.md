@@ -47,8 +47,7 @@ A typical process flow for data analytics is:
 - Build a data warehouse star or snowflake schema to store the raw data for rapid reporting.
 - Process the source data into the data warehouse.
 - Create a more compact analysis model with pre-built aggregates for rapid analysis.
-- Explore the data to find trends and facts.
-- Visualize the data to tell a story.
+- Explore and visualize the data to tell a story.
 
 ### How much river traffic is there in the United States?
 
@@ -73,7 +72,7 @@ answering questions, the more complex queue archive data are used.
 
 The shows the simple star schema for the data warehouse. 
 Dimensions were created for the datetime down to the hour,
-the vessel, and the lock chamber.
+the vessel, travel direction, and the lock chamber.
 
 The hour dimension was used in order to be able to 
 examine time of day factors in the future, especially in the locks with 
@@ -89,6 +88,9 @@ Washington Ship Canal in Seattle, WA. Vessel names like
 COMMERCIAL GENERIC, REC VESSELS UPBOUND, and RECREATIONAL
 will not be helpful in detailed analysis.
 
+The direction dimension indicates if the lock chamber was
+operating in the upstream (U) or downstream (D) direction.
+
 The lock chamber dimension is straightforward and identifies
 the USACE district (field office), river, lock and chamber.
 (A single lock may have muliple chambers to accomodate
@@ -96,3 +98,40 @@ traffic.)
 
 The single fact table contains all of the aggregate data
 available for analysis.
+
+### Process the source data into the warehouse (SSIS)
+
+This project processes the data into the data warehouse with
+Microsoft's SQL Server Integration Services (SSIS).
+
+Package developement was performed using Visual Studio 2017 and the 
+SQL Server data tools add-in. Package development and testing is
+performed in the the Visual Studio environment and then the 
+packages are deployed to a SQL Server instance for production use.
+Once installed on a server, the packages can be scheduled to run
+by a SQL Server Agent job or by using command scripts. One of the
+key benefits of SSIS and development within Visual Studio is the
+ability to use a source control system such as Git to control the 
+SSIS source elements.
+
+The packages for this project are:
+1. CreateDimAndFactTables
+2. InputLockQueue
+3. LoadDwDimensions
+4. LoadDwFactLockQueue
+
+#### 1. CreateDimAndFactTables
+
+This package is best run only once since it destroys and 
+re-creates all tables. At its heart, this package is a single
+SQL script embedded in the package's single control flow task.
+
+#### 2. InputLockQueue
+
+This Input Lock Queue package uses simple SSIS transformations to 
+read the CSV flat file and load the InputLockQueue table in the
+data warehouse database. The InputLockQueue table is the
+transformed raw input table.
+
+
+
