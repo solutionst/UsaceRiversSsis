@@ -1,21 +1,22 @@
- United States Army Corps of Engineers Lock Delay Data Analytics
-This little project is a demonstration of the Microsoft SSIS and SSAS
-tools as they apply to a freely available dataset of slightly
-more than 800,000. 
+# United States Army Corps of Engineers Lock Delay Data Exploration
 
-My goal in this project is to demonstrate tool usage, and maybe, provide
-some hints for efficient first-time use of these tools. For the SSAS portion
-of the project, I only completed creation of a multi-dimensional cube model. 
-A tabular model was not created. Finally, I
-will present some data exploration facts about locks on the Ohio River and
-raise some questions for further study.
+This little project shows the result of 
+using the Microsoft SSIS and SSAS
+tools as they apply to a freely available dataset of slightly
+more than 800,000 rows. (SSIS is SQL Server Integration Services and SSAS is
+SQL Server Analysis Services.)
+
+The goal of this project is to tell my story of learning the SSIS/SSAS
+tools within the context of an interesting problem. This document is not 
+a tutorial on how to use the Microsoft data tools. Microsoft and YouTube 
+have lots of tutorials about the usage of each tool or step.
 
 --------------------------------------------
 ## About the data
 
 The dataset for this project provides the following facts for the period 1 Jan 2016
 through 30 Jun 2017.
-- Corp district
+- Corps district
 - River
 - Lock number
 - Lock name
@@ -128,10 +129,54 @@ SQL script embedded in the package's single control flow task.
 
 #### 2. InputLockQueue
 
-This Input Lock Queue package uses simple SSIS transformations to 
+The Input Lock Queue package uses simple SSIS transformations to 
 read the CSV flat file and load the InputLockQueue table in the
 data warehouse database. The InputLockQueue table is the
 transformed raw input table.
 
+#### 3. LoadDwDimensions
+
+This package consists of three data flow tasks with only SQL Tasks 
+at the control flow level. These SQL tasks contain scripts to find 
+new dimensions in the InputLockQueue table and add new dimension values.
+
+The beauty of SSIS (or other ETL tools) is the ability to embed SQL tasks
+sequentially to control a potentially complex flow within a package that
+the next analyst can use without worrying about sequencing.
+
+#### 4. LoadDwFactLockQueue
+
+The fact loading package uses the dimensions loaded at step 3 to add
+dimension table keys to the processing stream and write fact records
+to the FactLockage table.
+
+### Create a compact analysis model (SSAS)
+
+The main purpose of SSAS is to build small data structures that can
+be quickly analyzed within a reporting tool such as Excel. Historically,
+these compact structures were referred to as multi-dimensional modeling 
+(MDM) cubes. MDM cubes are queried with an industry-standard language 
+called MDX.
+
+In order to create a compact structure, SSAS aggregates facts along dimensions 
+using functions like AVERAGE(), SUM(), and COUNT(). If you get rid of all
+those pesky rows, you can shrink the dataset substantially. [But, you lose 
+the ability to find individual facts easily.]
+
+The wizards in SSAS do a very good job of creating an MDM cube from the
+data warehouse tables and shrinking the deployed data. Again, find and use
+web tutorials to complete your tasks.
+
+### Explore the data
+
+The [data exploration document](outputDocs/Explore.pdf) shows the results
+of some simple data exploration and analysis.
+
+-------------------------------
+## Lessons Learned
+
+- SSIS is a mature (> 10 years old) tool set that seems to be solid, but somewhat limited (or difficult to use) compared to other ETL tools.
+- SQL Server must be set up to process either MDM models or Microsoft tabular models. The two types of SSAS models cannot be mixed within a single SQL Server instance.
+- Preliminary results from the exploration stage must be confirmed from external sources. See [data exploration document](outputDocs/Explore.pdf).
 
 
