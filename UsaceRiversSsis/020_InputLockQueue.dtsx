@@ -5,14 +5,14 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-KC83MAS"
   DTS:CreatorName="DESKTOP-KC83MAS\bharper"
-  DTS:DTSID="{ECCEB109-F195-4268-BD65-4420568446E2}"
+  DTS:DTSID="{397B4E47-DAAB-43F5-B08C-091284B10F2F}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3002.68"
   DTS:LocaleID="1033"
-  DTS:ObjectName="InputLockQueue"
+  DTS:ObjectName="020_InputLockQueue"
   DTS:PackageType="5"
-  DTS:VersionBuild="75"
-  DTS:VersionGUID="{CC6A3EDC-CD13-4644-A61B-78B8EB5D1A46}">
+  DTS:VersionBuild="79"
+  DTS:VersionGUID="{EEA704BE-6012-41FC-A5F5-BD2E9176E213}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -2934,7 +2934,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
         <NodeLayout
           Size="151,42"
           Id="Package\ReadFlatFile\Flat File Source"
-          TopLeft="80.8928571428571,25.8928571428571" />
+          TopLeft="80.6428571428571,25.8928571428571" />
         <NodeLayout
           Size="163,42"
           Id="Package\ReadFlatFile\Get Error Info"
@@ -2942,7 +2942,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
         <NodeLayout
           Size="165,42"
           Id="Package\ReadFlatFile\Fix Column Values"
-          TopLeft="80.75,98.75" />
+          TopLeft="80.5,98.75" />
         <NodeLayout
           Size="173.5,42"
           Id="Package\ReadFlatFile\UsaceRiversDWDest"
@@ -2999,7 +2999,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ReadFlatFile.Paths[Flat File Source Output]"
-          TopLeft="159.821428571429,67.8928571428571">
+          TopLeft="159.571428571429,67.8928571428571">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3021,7 +3021,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ReadFlatFile.Paths[Derived Column Output]"
-          TopLeft="161.982142857143,140.75">
+          TopLeft="161.857142857143,140.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"

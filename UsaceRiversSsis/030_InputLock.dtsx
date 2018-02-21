@@ -1,0 +1,2442 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/20/2018 5:09:49 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-KC83MAS"
+  DTS:CreatorName="DESKTOP-KC83MAS\bharper"
+  DTS:DTSID="{C2BD91FC-657A-4192-A51C-F16BA33387B0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.68"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="030_InputLock"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{B3D28127-8A27-4A3B-9CF7-EBB9EC80479E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Read Flat File"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{ACC50ECC-9FC1-4736-9C82-E5BAFDF6339C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Read Flat File"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Read Flat File\Fix Column Values"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Fix Column Values"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Read Flat File\Fix Column Values.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Read Flat File\Fix Column Values.Inputs[Derived Column Input].Columns[PMSNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="PMSNAME"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[PMSNAME]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[PMSNAME]}," &amp; "," AND ")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(PMSNAME," &amp; "," AND ")</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Read Flat File\Fix Column Values.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Read Flat File\Fix Column Values.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Read Flat File\Fix Column Values.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Read Flat File\Fix Column Values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Read Flat File\Fix Column Values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Read Flat File\Fix Column Values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Read Flat File\Fix Column Values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Read Flat File\Fix Column Values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Read Flat File\Input Lock CSV"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Input Lock CSV"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Read Flat File\Input Lock CSV.Connections[FlatFileConnection]"
+                  connectionManagerID="{03D21E3D-FA14-4B0C-8466-997FD555814C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Input Lock]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[X]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[X]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[X]"
+                      name="X"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[Y]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[Y]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[Y]"
+                      name="Y"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[OBJECTID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[OBJECTID]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[OBJECTID]"
+                      name="OBJECTID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[ID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[ID]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[NDCCODE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[NDCCODE]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[NDCCODE]"
+                      name="NDCCODE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[REGION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[REGION]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[REGION]"
+                      name="REGION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[RIVERCD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[RIVERCD]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[RIVERCD]"
+                      name="RIVERCD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[PMSDATA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[PMSDATA]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[PMSDATA]"
+                      name="PMSDATA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[NAVSTR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[NAVSTR]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[NAVSTR]"
+                      name="NAVSTR"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHAMBN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHAMBN]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHAMBN]"
+                      name="CHAMBN"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHB1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHB1]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHB1]"
+                      name="CHB1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[STR1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[STR1]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[STR1]"
+                      name="STR1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[PMSNAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[PMSNAME]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[PMSNAME]"
+                      name="PMSNAME"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[ALIAS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[ALIAS]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[ALIAS]"
+                      name="ALIAS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[STATUS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[STATUS]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[STATUS]"
+                      name="STATUS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[RIVER]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[RIVER]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[RIVER]"
+                      name="RIVER"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[RIVERMI]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[RIVERMI]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[RIVERMI]"
+                      name="RIVERMI"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[BANK]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[BANK]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[BANK]"
+                      name="BANK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[LIFT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[LIFT]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[LIFT]"
+                      name="LIFT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHMBUL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHMBUL]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHMBUL]"
+                      name="CHMBUL"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[WIDTH]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[WIDTH]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[WIDTH]"
+                      name="WIDTH"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHMBUW]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHMBUW]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHMBUW]"
+                      name="CHMBUW"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[AUDPA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[AUDPA]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[AUDPA]"
+                      name="AUDPA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[AUDPB]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[AUDPB]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[AUDPB]"
+                      name="AUDPB"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[UPDPTHMS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[UPDPTHMS]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[UPDPTHMS]"
+                      name="UPDPTHMS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[LWDPTHMS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[LWDPTHMS]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[LWDPTHMS]"
+                      name="LWDPTHMS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[YEAROPEN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[YEAROPEN]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[YEAROPEN]"
+                      name="YEAROPEN"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[GATETYPE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[GATETYPE]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[GATETYPE]"
+                      name="GATETYPE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNDPTHA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHNDPTHA]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNDPTHA]"
+                      name="CHNDPTHA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNDPTHB]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHNDPTHB]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNDPTHB]"
+                      name="CHNDPTHB"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNWDTHA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHNWDTHA]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNWDTHA]"
+                      name="CHNWDTHA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNWDTHB]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHNWDTHB]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNWDTHB]"
+                      name="CHNWDTHB"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[WWPRJCT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[WWPRJCT]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[WWPRJCT]"
+                      name="WWPRJCT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[MOORING]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[MOORING]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[MOORING]"
+                      name="MOORING"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[MULTI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[MULTI]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[MULTI]"
+                      name="MULTI"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[DIVISION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[DIVISION]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[DIVISION]"
+                      name="DIVISION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[DISTRICT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[DISTRICT]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[DISTRICT]"
+                      name="DISTRICT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[STATE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[STATE]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[STATE]"
+                      name="STATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[MAINT1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[MAINT1]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[MAINT1]"
+                      name="MAINT1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[OPER1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[OPER1]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[OPER1]"
+                      name="OPER1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[TOWN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[TOWN]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[TOWN]"
+                      name="TOWN"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[MOORING_R]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[MOORING_R]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[MOORING_R]"
+                      name="MOORING_R"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[GEN_REMK]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[GEN_REMK]"
+                      length="1200"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[GEN_REMK]"
+                      name="GEN_REMK"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[REP_LK_N]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[REP_LK_N]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[REP_LK_N]"
+                      name="REP_LK_N"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[LOCKCD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[LOCKCD]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[LOCKCD]"
+                      name="LOCKCD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHMBCD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHMBCD]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHMBCD]"
+                      name="CHMBCD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[NOCHMB]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[NOCHMB]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[NOCHMB]"
+                      name="NOCHMB"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[LENGTH_]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[LENGTH_]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[LENGTH_]"
+                      name="LENGTH_"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[GATE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[GATE]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[GATE]"
+                      name="GATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNLGTH]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHNLGTH]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNLGTH]"
+                      name="CHNLGTH"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[OWNER1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[OWNER1]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[OWNER1]"
+                      name="OWNER1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CONTY1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CONTY1]"
+                      length="50"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CONTY1]"
+                      name="CONTY1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[X]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="X" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[Y]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Y" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[OBJECTID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OBJECTID" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[NDCCODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NDCCODE" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[REGION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="REGION" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[RIVERCD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RIVERCD" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[PMSDATA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PMSDATA" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[NAVSTR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NAVSTR" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHAMBN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CHAMBN" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHB1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CHB1" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[STR1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="STR1" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[PMSNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PMSNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[ALIAS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ALIAS" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[RIVER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RIVER" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[RIVERMI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RIVERMI" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[BANK]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BANK" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[LIFT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LIFT" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHMBUL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CHMBUL" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[WIDTH]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WIDTH" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHMBUW]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CHMBUW" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[AUDPA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="AUDPA" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[AUDPB]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="AUDPB" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[UPDPTHMS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="UPDPTHMS" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[LWDPTHMS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LWDPTHMS" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[YEAROPEN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="YEAROPEN" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[GATETYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GATETYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHNDPTHA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CHNDPTHA" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHNDPTHB]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CHNDPTHB" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHNWDTHA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CHNWDTHA" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHNWDTHB]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CHNWDTHB" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[WWPRJCT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WWPRJCT" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[MOORING]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MOORING" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[MULTI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MULTI" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[DIVISION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DIVISION" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[DISTRICT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DISTRICT" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[STATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="STATE" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[MAINT1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MAINT1" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[OPER1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OPER1" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[TOWN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TOWN" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[MOORING_R]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MOORING_R" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[GEN_REMK]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GEN_REMK" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[REP_LK_N]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="REP_LK_N" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[LOCKCD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LOCKCD" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHMBCD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CHMBCD" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[NOCHMB]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NOCHMB" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[LENGTH_]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LENGTH_" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[GATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GATE" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CHNLGTH]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CHNLGTH" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[OWNER1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OWNER1" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].ExternalColumns[CONTY1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CONTY1" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Read Flat File\Input Lock Table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Input Lock Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[InputLock]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Read Flat File\Input Lock Table.Connections[OleDbConnection]"
+                  connectionManagerID="{582F5992-4625-4264-BA5E-77A6D9FDA510}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost_DW_MDM.UsaceRiversDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[X]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="X"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[X]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[X]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[Y]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Y"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[Y]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[Y]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[OBJECTID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OBJECTID"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[OBJECTID]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[OBJECTID]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[NDCCODE]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="NDCCODE"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[NDCCODE]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[NDCCODE]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[REGION]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="REGION"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[REGION]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[REGION]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[RIVERCD]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="RIVERCD"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[RIVERCD]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[RIVERCD]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[PMSDATA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="PMSDATA"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[PMSDATA]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[PMSDATA]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[NAVSTR]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="NAVSTR"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[NAVSTR]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[NAVSTR]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[CHAMBN]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CHAMBN"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHAMBN]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHAMBN]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[CHB1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CHB1"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHB1]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHB1]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[STR1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="STR1"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[STR1]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[STR1]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[PMSNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="PMSNAME"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[PMSNAME]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[PMSNAME]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[ALIAS]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ALIAS"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[ALIAS]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[ALIAS]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[STATUS]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="STATUS"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[STATUS]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[STATUS]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[RIVER]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="RIVER"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[RIVER]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[RIVER]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[RIVERMI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RIVERMI"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[RIVERMI]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[RIVERMI]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[BANK]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="BANK"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[BANK]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[BANK]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[LIFT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LIFT"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[LIFT]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[LIFT]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[CHMBUL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CHMBUL"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHMBUL]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHMBUL]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[WIDTH]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="WIDTH"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[WIDTH]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[WIDTH]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[CHMBUW]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CHMBUW"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHMBUW]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHMBUW]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[AUDPA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="AUDPA"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[AUDPA]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[AUDPA]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[AUDPB]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="AUDPB"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[AUDPB]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[AUDPB]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[UPDPTHMS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="UPDPTHMS"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[UPDPTHMS]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[UPDPTHMS]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[LWDPTHMS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LWDPTHMS"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[LWDPTHMS]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[LWDPTHMS]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[YEAROPEN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="YEAROPEN"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[YEAROPEN]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[YEAROPEN]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[GATETYPE]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="GATETYPE"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[GATETYPE]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[GATETYPE]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[CHNDPTHA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CHNDPTHA"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHNDPTHA]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNDPTHA]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[CHNDPTHB]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CHNDPTHB"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHNDPTHB]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNDPTHB]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[CHNWDTHA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CHNWDTHA"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHNWDTHA]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNWDTHA]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[CHNWDTHB]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CHNWDTHB"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHNWDTHB]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNWDTHB]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[WWPRJCT]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="WWPRJCT"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[WWPRJCT]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[WWPRJCT]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[MOORING]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="MOORING"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[MOORING]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[MOORING]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[MULTI]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="MULTI"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[MULTI]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[MULTI]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[DIVISION]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DIVISION"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[DIVISION]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[DIVISION]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[DISTRICT]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DISTRICT"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[DISTRICT]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[DISTRICT]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[STATE]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="STATE"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[STATE]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[STATE]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[MAINT1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="MAINT1"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[MAINT1]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[MAINT1]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[OPER1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="OPER1"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[OPER1]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[OPER1]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[TOWN]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TOWN"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[TOWN]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[TOWN]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[MOORING_R]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="MOORING_R"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[MOORING_R]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[MOORING_R]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[GEN_REMK]"
+                      cachedDataType="wstr"
+                      cachedLength="1200"
+                      cachedName="GEN_REMK"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[GEN_REMK]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[GEN_REMK]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[REP_LK_N]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="REP_LK_N"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[REP_LK_N]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[REP_LK_N]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[LOCKCD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LOCKCD"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[LOCKCD]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[LOCKCD]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[CHMBCD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CHMBCD"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHMBCD]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHMBCD]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[NOCHMB]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NOCHMB"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[NOCHMB]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[NOCHMB]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[LENGTH_]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LENGTH_"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[LENGTH_]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[LENGTH_]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[GATE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="GATE"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[GATE]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[GATE]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[CHNLGTH]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CHNLGTH"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHNLGTH]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CHNLGTH]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[OWNER1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OWNER1"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[OWNER1]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[OWNER1]" />
+                    <inputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].Columns[CONTY1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CONTY1"
+                      externalMetadataColumnId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CONTY1]"
+                      lineageId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output].Columns[CONTY1]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[X]"
+                      dataType="r8"
+                      name="X" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[Y]"
+                      dataType="r8"
+                      name="Y" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[OBJECTID]"
+                      dataType="i4"
+                      name="OBJECTID" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[NDCCODE]"
+                      dataType="wstr"
+                      length="50"
+                      name="NDCCODE" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[REGION]"
+                      dataType="wstr"
+                      length="50"
+                      name="REGION" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[RIVERCD]"
+                      dataType="wstr"
+                      length="50"
+                      name="RIVERCD" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[PMSDATA]"
+                      dataType="wstr"
+                      length="50"
+                      name="PMSDATA" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[NAVSTR]"
+                      dataType="wstr"
+                      length="50"
+                      name="NAVSTR" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHAMBN]"
+                      dataType="wstr"
+                      length="50"
+                      name="CHAMBN" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHB1]"
+                      dataType="wstr"
+                      length="50"
+                      name="CHB1" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[STR1]"
+                      dataType="wstr"
+                      length="50"
+                      name="STR1" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[PMSNAME]"
+                      dataType="wstr"
+                      length="50"
+                      name="PMSNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[ALIAS]"
+                      dataType="wstr"
+                      length="50"
+                      name="ALIAS" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[STATUS]"
+                      dataType="wstr"
+                      length="50"
+                      name="STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[RIVER]"
+                      dataType="wstr"
+                      length="50"
+                      name="RIVER" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[RIVERMI]"
+                      dataType="i2"
+                      name="RIVERMI" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[BANK]"
+                      dataType="wstr"
+                      length="50"
+                      name="BANK" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[LIFT]"
+                      dataType="i4"
+                      name="LIFT" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHMBUL]"
+                      dataType="i4"
+                      name="CHMBUL" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[WIDTH]"
+                      dataType="i4"
+                      name="WIDTH" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHMBUW]"
+                      dataType="i4"
+                      name="CHMBUW" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[AUDPA]"
+                      dataType="i4"
+                      name="AUDPA" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[AUDPB]"
+                      dataType="i4"
+                      name="AUDPB" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[UPDPTHMS]"
+                      dataType="i4"
+                      name="UPDPTHMS" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[LWDPTHMS]"
+                      dataType="i4"
+                      name="LWDPTHMS" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[YEAROPEN]"
+                      dataType="i4"
+                      name="YEAROPEN" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[GATETYPE]"
+                      dataType="wstr"
+                      length="100"
+                      name="GATETYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHNDPTHA]"
+                      dataType="i4"
+                      name="CHNDPTHA" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHNDPTHB]"
+                      dataType="i4"
+                      name="CHNDPTHB" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHNWDTHA]"
+                      dataType="i4"
+                      name="CHNWDTHA" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHNWDTHB]"
+                      dataType="i4"
+                      name="CHNWDTHB" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[WWPRJCT]"
+                      dataType="wstr"
+                      length="100"
+                      name="WWPRJCT" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[MOORING]"
+                      dataType="wstr"
+                      length="50"
+                      name="MOORING" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[MULTI]"
+                      dataType="wstr"
+                      length="50"
+                      name="MULTI" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[DIVISION]"
+                      dataType="wstr"
+                      length="50"
+                      name="DIVISION" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[DISTRICT]"
+                      dataType="wstr"
+                      length="50"
+                      name="DISTRICT" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[STATE]"
+                      dataType="wstr"
+                      length="50"
+                      name="STATE" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[MAINT1]"
+                      dataType="wstr"
+                      length="50"
+                      name="MAINT1" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[OPER1]"
+                      dataType="wstr"
+                      length="50"
+                      name="OPER1" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[TOWN]"
+                      dataType="wstr"
+                      length="50"
+                      name="TOWN" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[MOORING_R]"
+                      dataType="wstr"
+                      length="100"
+                      name="MOORING_R" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[GEN_REMK]"
+                      dataType="wstr"
+                      length="1200"
+                      name="GEN_REMK" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[REP_LK_N]"
+                      dataType="wstr"
+                      length="50"
+                      name="REP_LK_N" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[LOCKCD]"
+                      dataType="i4"
+                      name="LOCKCD" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHMBCD]"
+                      dataType="i4"
+                      name="CHMBCD" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[NOCHMB]"
+                      dataType="i4"
+                      name="NOCHMB" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[LENGTH_]"
+                      dataType="wstr"
+                      length="50"
+                      name="LENGTH_" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[GATE]"
+                      dataType="i4"
+                      name="GATE" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CHNLGTH]"
+                      dataType="wstr"
+                      length="50"
+                      name="CHNLGTH" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[OWNER1]"
+                      dataType="i4"
+                      name="OWNER1" />
+                    <externalMetadataColumn
+                      refId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input].ExternalColumns[CONTY1]"
+                      dataType="wstr"
+                      length="50"
+                      name="CONTY1" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Read Flat File\Input Lock Table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Read Flat File\Input Lock Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Read Flat File\Input Lock Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Read Flat File\Input Lock Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Read Flat File.Paths[Derived Column Output]"
+              endId="Package\Read Flat File\Input Lock Table.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Read Flat File\Fix Column Values.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Read Flat File.Paths[Flat File Source Output]"
+              endId="Package\Read Flat File\Fix Column Values.Inputs[Derived Column Input]"
+              name="Flat File Source Output"
+              startId="Package\Read Flat File\Input Lock CSV.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="142.5,42"
+          Id="Package\Read Flat File"
+          TopLeft="65,30.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Read Flat File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Read Flat File\Input Lock Table"
+          TopLeft="5,172" />
+        <NodeLayout
+          Size="151,42.5"
+          Id="Package\Read Flat File\Input Lock CSV"
+          TopLeft="6.75,5" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Read Flat File\Fix Column Values"
+          TopLeft="6.25,78.75" />
+        <EdgeLayout
+          Id="Package\Read Flat File.Paths[Flat File Source Output]"
+          TopLeft="85.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.25"
+              Start="0,0"
+              End="0,23.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Read Flat File.Paths[Derived Column Output]"
+          TopLeft="86.375,120.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.25"
+              Start="0,0"
+              End="0,43.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Read Flat File\Input Lock Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
