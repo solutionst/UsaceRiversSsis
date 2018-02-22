@@ -277,10 +277,16 @@
         <Attribute dwd:design-time-name="3ab985a6-47fb-4aa7-be3f-1f770b4f1e9f">
           <AttributeID>Chamber Number</AttributeID>
         </Attribute>
+        <Attribute dwd:design-time-name="21aafbc0-7dc6-4069-9f69-46683b5ba354">
+          <AttributeID>River Mile</AttributeID>
+        </Attribute>
       </Attributes>
       <Hierarchies>
         <Hierarchy dwd:design-time-name="69241cf2-96fc-46d9-ad16-194fee1c5011">
           <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="9bf03cdc-32d1-4c0b-8997-f5f116613ec5">
+          <HierarchyID>Hierarchy 1</HierarchyID>
         </Hierarchy>
       </Hierarchies>
     </Dimension>

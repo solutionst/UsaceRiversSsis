@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="040_LoadDwDimensions"
   DTS:PackageType="5"
-  DTS:VersionBuild="68"
-  DTS:VersionGUID="{493A0F8D-88ED-4A23-B285-523C2B107F00}">
+  DTS:VersionBuild="69"
+  DTS:VersionGUID="{D55452C4-3AD8-4EF1-B8D3-4FAFD1C43B94}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:LogProviders>
@@ -103,7 +103,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{582F5992-4625-4264-BA5E-77A6D9FDA510}"
-          SQLTask:SqlStatementSource="UPDATE DimLockChamber &#xA;set RiverMile = inp.RIVERMI&#xA;from InputLock inp&#xA;where LockName like inp.NAVSTR + '%'&#xA;and RiverMile is null;&#xA;&#xA;UPDATE DimLockChamber &#xA;set RiverMile = inp.RIVERMI&#xA;from InputLock inp, DimLockChamber l&#xA; where l.LockName like inp.PMSNAME + '%'&#xA;  and l.River like inp.RIVER + '%'&#xA;  and l.RiverMile is null;&#xA;&#xA;  UPDATE DimLockChamber &#xA;set RiverMile = 0&#xA;from InputLock inp, DimLockChamber l&#xA; where l.RiverMile is null;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="UPDATE DimLockChamber &#xA;set RiverMile = inp.RIVERMI&#xA;from InputLock inp&#xA;where LockName like inp.NAVSTR + '%'&#xA;and RiverMile is null;&#xA;&#xA;UPDATE DimLockChamber &#xA;set RiverMile = inp.RIVERMI&#xA;from InputLock inp, DimLockChamber l&#xA; where l.LockName like inp.PMSNAME + '%'&#xA;  and l.River like inp.RIVER + '%'&#xA;  and l.RiverMile is null;&#xA;&#xA;  UPDATE DimLockChamber &#xA;set RiverMile = -1&#xA;from InputLock inp, DimLockChamber l&#xA; where l.RiverMile is null;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -157,6 +157,10 @@
           Size="246,56"
           Id="Package\Load DimVessel from InputLockQueue"
           TopLeft="41,187.714285714286" />
+        <NodeLayout
+          Size="183.5,42"
+          Id="Package\Update RiverMile Field"
+          TopLeft="62.75,275.75" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="199,49.5">
@@ -213,24 +217,32 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="183.5,42"
-          Id="Package\Update RiverMile Field"
-          TopLeft="62.75,276" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="161.375,243.714285714286">
+          TopLeft="164,243.714285714286">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,32.285714285714"
+              EndConnector="-9.5,32.035714285714"
               Start="0,0"
-              End="0,24.785714285714">
+              End="-9.5,24.535714285714">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.785714285714" />
+                    End="0,12.017857142857" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.017857142857"
+                    Point2="0,16.017857142857"
+                    Point3="-4,16.017857142857" />
+                  <mssgle:LineSegment
+                    End="-5.5,16.017857142857" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.5,16.017857142857"
+                    Point2="-9.5,16.017857142857"
+                    Point3="-9.5,20.017857142857" />
+                  <mssgle:LineSegment
+                    End="-9.5,24.535714285714" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

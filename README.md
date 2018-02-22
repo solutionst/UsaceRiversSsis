@@ -34,7 +34,9 @@ through 30 Jun 2017.
 
 The raw data for this project can be found at 
 [Corps Locks Queue Archive](https://data.navigationdatacenter.us/Locks/Corps-Locks-Queue-Archive/nfqq-pxqr).
-I exported the data in CSV format.
+I exported the data in CSV format. Data about locks, including
+the mile from the river's origin was sourced from 
+the [Department of Transportation Lock table](http://osav-usdot.opendata.arcgis.com/datasets/0b0cbeb8189a4cc39f57782da7a90e77_0).
 
 ---------------------------------------
 ## From raw data to human understanding
@@ -177,6 +179,6 @@ of some simple data exploration and analysis.
 
 - SSIS is a mature (> 10 years old) tool set that seems to be solid, but somewhat limited (or difficult to use) compared to other ETL tools.
 - SQL Server must be set up to process either MDM models or Microsoft tabular models. The two types of SSAS models cannot be mixed within a single SQL Server instance.
-- Preliminary results from the exploration stage must be confirmed from external sources. See [data exploration document](outputDocs/Explore.pdf).
+- Preliminary results from the exploration stage are described in the [data exploration document](outputDocs/Explore.pdf).
 
 
